@@ -13,6 +13,7 @@
 		D3AF3E412B72A3DA00344792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E402B72A3DA00344792 /* Assets.xcassets */; };
 		D3AF3E442B72A3DA00344792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E422B72A3DA00344792 /* LaunchScreen.storyboard */; };
 		D3AF3E4D2B72B30C00344792 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3AF3E4C2B72B30C00344792 /* SnapKit */; };
+		D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		D3AF3E402B72A3DA00344792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3AF3E432B72A3DA00344792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3AF3E452B72A3DA00344792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		D3AF3E362B72A3D800344792 /* TaiQazan_Admin */ = {
 			isa = PBXGroup;
 			children = (
+				D3AF3E4E2B72C28C00344792 /* Helpers */,
 				D3AF3E372B72A3D800344792 /* AppDelegate.swift */,
 				D3AF3E392B72A3D800344792 /* SceneDelegate.swift */,
 				D3AF3E3B2B72A3D800344792 /* ViewController.swift */,
@@ -64,6 +67,14 @@
 				D3AF3E452B72A3DA00344792 /* Info.plist */,
 			);
 			path = TaiQazan_Admin;
+			sourceTree = "<group>";
+		};
+		D3AF3E4E2B72C28C00344792 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3AF3E3C2B72A3D800344792 /* ViewController.swift in Sources */,
+				D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */,
 				D3AF3E382B72A3D800344792 /* AppDelegate.swift in Sources */,
 				D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */,
 			);
