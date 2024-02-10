@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import FirebaseStorage
+import FirebaseFirestore
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -114,21 +116,63 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let priceText = priceTextField.text,
             let brandText = brandTextField.text,
             let descriptionText = descriptionTextField.text,
+            let image = productImageButton.imageView?.image,
             nameText.count > 0,
             priceText.count > 0,
             brandText.count > 0,
             descriptionText.count > 0,
-            productImageButton.currentImage != UIImage(named: "plus_photo")
+            image != UIImage(named: "plus_photo")
         else {
             
             let alert = UIAlertController(title: "Not all fields are filled in", message: "Fill in all the fields", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default)
             alert.addAction(action)
             present(alert, animated: true)
-
+            
             return
         }
-
+        
+        guard let uploadData = image.jpegData(compressionQuality: 0.1) else { return }
+        
+        let filename = NSUUID().uuidString
+        
+        let storageRef = Storage.storage().reference().child("productImages").child(filename)
+        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, err) in
+            
+            if let err = err {
+                print("Failed to upload product image:", err)
+                return
+            }
+            
+            storageRef.downloadURL(completion: { (downloadURL, err) in
+                if let err = err {
+                    print("Failed to fetch downloadURL:", err)
+                    return
+                }
+                
+                guard let productImageURL = downloadURL?.absoluteString else { return }
+                
+                print("Successfully uploaded profile image:", productImageURL)
+                
+                let db = Firestore.firestore()
+                var ref: DocumentReference? = nil
+                ref = db.collection("products").addDocument(data: [
+                    "id": "5",
+                    "name": nameText,
+                    "price": Int(priceText) ?? 0,
+                    "description": descriptionText,
+                    "brand": brandText,
+                    "imageLink": productImageURL
+                ]) { error in
+                    if let error = error {
+                        print("Error adding document: \(error)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                    }
+                }
+            })
+        })
+        
         dismiss(animated: true)
     }
     
