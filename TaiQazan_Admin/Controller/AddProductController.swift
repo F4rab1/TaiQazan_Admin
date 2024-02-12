@@ -170,7 +170,7 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
                 let db = Firestore.firestore()
                 var ref: DocumentReference? = nil
                 ref = db.collection("products").addDocument(data: [
-                    "id": "5",
+                    "id": idText,
                     "name": nameText,
                     "price": Int(priceText) ?? 0,
                     "description": descriptionText,
