@@ -10,7 +10,7 @@ import SnapKit
 import FirebaseStorage
 import FirebaseFirestore
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class AddProductController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     private let productImageButton: UIButton = {
         let button = UIButton()
@@ -18,6 +18,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         button.imageView?.contentMode = .scaleAspectFit
         
         return button
+    }()
+    
+    private let idTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Product ID"
+        tf.borderStyle = .roundedRect
+        
+        return tf
     }()
     
     private let nameTextField: UITextField = {
@@ -52,7 +60,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return tf
     }()
     
-    private lazy var mainStackView = CustomStackView(axis: .vertical, arrangedSubviews: [nameTextField, priceTextField, brandTextField, descriptionTextField], spacing: 10, alignment: .fill)
+    private lazy var mainStackView = CustomStackView(axis: .vertical, arrangedSubviews: [idTextField, nameTextField, priceTextField, brandTextField, descriptionTextField], spacing: 10, alignment: .fill)
     
     private let addProductButton: UIButton = {
         let button = UIButton()
@@ -67,13 +75,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Add product"
-        nameTextField.delegate = self
-        priceTextField.delegate = self
-        brandTextField.delegate = self
-        descriptionTextField.delegate = self
         
         setupUI()
+        setDelegates()
         setupConstraints()
     }
     
@@ -85,6 +89,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         [productImageButton, mainStackView, addProductButton].forEach {
             view.addSubview($0)
         }
+    }
+    
+    private func setDelegates() {
+        idTextField.delegate = self
+        nameTextField.delegate = self
+        priceTextField.delegate = self
+        brandTextField.delegate = self
+        descriptionTextField.delegate = self
     }
     
     private func setupConstraints() {
@@ -105,25 +117,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             make.height.equalTo(50)
         }
         
-        [nameTextField, priceTextField, brandTextField, descriptionTextField].forEach { make in
+        [idTextField, nameTextField, priceTextField, brandTextField, descriptionTextField].forEach { make in
             make.snp.makeConstraints { $0.height.equalTo(50)}
         }
     }
     
     @objc func addProductButtonTapped() {
         guard
+            let idText = idTextField.text,
             let nameText = nameTextField.text,
             let priceText = priceTextField.text,
             let brandText = brandTextField.text,
             let descriptionText = descriptionTextField.text,
             let image = productImageButton.imageView?.image,
+            idText.count > 0,
             nameText.count > 0,
             priceText.count > 0,
             brandText.count > 0,
             descriptionText.count > 0,
             image != UIImage(named: "plus_photo")
         else {
-            
             let alert = UIAlertController(title: "Not all fields are filled in", message: "Fill in all the fields", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default)
             alert.addAction(action)
@@ -195,6 +208,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         return true
     }
-    
 }
 
