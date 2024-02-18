@@ -14,6 +14,10 @@
 		D3AF3E412B72A3DA00344792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E402B72A3DA00344792 /* Assets.xcassets */; };
 		D3AF3E442B72A3DA00344792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E422B72A3DA00344792 /* LaunchScreen.storyboard */; };
 		D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */; };
+		D3F097692B822B0A00668265 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F097682B822B0A00668265 /* ChatViewController.swift */; };
+		D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976A2B822C2200668265 /* OrderViewController.swift */; };
+		D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976D2B823DD900668265 /* OrderCell.swift */; };
+		D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */; };
 		D3F390882B7798E2000D8877 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3F390872B7798E2000D8877 /* GoogleService-Info.plist */; };
 		D3F3908C2B779A56000D8877 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3F3908B2B779A56000D8877 /* SnapKit */; };
 		D3F3908F2B779A89000D8877 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D3F3908E2B779A89000D8877 /* FirebaseDatabase */; };
@@ -31,6 +35,10 @@
 		D3AF3E432B72A3DA00344792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3AF3E452B72A3DA00344792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
+		D3F097682B822B0A00668265 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D3F0976A2B822C2200668265 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		D3F0976D2B823DD900668265 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDescriptionViewController.swift; sourceTree = "<group>"; };
 		D3F390872B7798E2000D8877 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +60,9 @@
 		D37B4E8E2B79D3E200C52ACA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D3AF3E3B2B72A3D800344792 /* AddProductController.swift */,
+				D3F097702B824B9400668265 /* Main */,
+				D3F0976F2B824B6C00668265 /* Orders */,
+				D3F097712B824BA000668265 /* Chat */,
 				D37B4E8F2B79D46600C52ACA /* TabBarController.swift */,
 			);
 			path = Controller;
@@ -77,6 +87,7 @@
 		D3AF3E362B72A3D800344792 /* TaiQazan_Admin */ = {
 			isa = PBXGroup;
 			children = (
+				D3F0976C2B823DA300668265 /* View */,
 				D37B4E8E2B79D3E200C52ACA /* Controller */,
 				D3AF3E4E2B72C28C00344792 /* Helpers */,
 				D3AF3E372B72A3D800344792 /* AppDelegate.swift */,
@@ -95,6 +106,47 @@
 				D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D3F0976C2B823DA300668265 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3F097742B824CE800668265 /* Orders */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D3F0976F2B824B6C00668265 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0976A2B822C2200668265 /* OrderViewController.swift */,
+				D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		D3F097702B824B9400668265 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D3AF3E3B2B72A3D800344792 /* AddProductController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		D3F097712B824BA000668265 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D3F097682B822B0A00668265 /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D3F097742B824CE800668265 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0976D2B823DD900668265 /* OrderCell.swift */,
+			);
+			path = Orders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,7 +233,11 @@
 				D3AF3E3C2B72A3D800344792 /* AddProductController.swift in Sources */,
 				D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */,
 				D3AF3E382B72A3D800344792 /* AppDelegate.swift in Sources */,
+				D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */,
 				D37B4E902B79D46600C52ACA /* TabBarController.swift in Sources */,
+				D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */,
+				D3F097692B822B0A00668265 /* ChatViewController.swift in Sources */,
+				D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */,
 				D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

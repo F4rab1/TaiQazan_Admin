@@ -8,17 +8,17 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewControllers = [
-            createNavController(vc: AddProductController(), title: "Main", imageName: "house.fill"),
-            createNavController(vc: UIViewController(), title: "Chat", imageName: "message.fill"),
-            createNavController(vc: UIViewController(), title: "Profile", imageName: "square.stack.3d.up.fill"),
+            createNavController(vc: AddProductController(), title: "Main", imageName: "plus.rectangle.fill"),
+            createNavController(vc: OrderViewController(), title: "Orders", imageName: "cart.fill"),
+            createNavController(vc: ChatViewController(), title: "Chat", imageName: "message.fill"),
         ]
         
     }
-
+    
     fileprivate func createNavController(vc: UIViewController, title: String, imageName: String) -> UIViewController {
         vc.title = title
         let navController = UINavigationController(rootViewController: vc)
@@ -26,5 +26,5 @@ class TabBarController: UITabBarController {
         
         return navController
     }
-
+    
 }

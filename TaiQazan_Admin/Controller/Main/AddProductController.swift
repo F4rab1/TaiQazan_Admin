@@ -79,6 +79,7 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
         setupUI()
         setDelegates()
         setupConstraints()
+        fetchNumberOfProducts()
     }
     
     private func setupUI() {
@@ -88,6 +89,29 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
         
         [productImageButton, mainStackView, addProductButton].forEach {
             view.addSubview($0)
+        }
+    }
+    
+    private func fetchNumberOfProducts() {
+        let db = Firestore.firestore()
+        let productsRef = db.collection("products")
+        
+        productsRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching documents: \(error)")
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                print("Snapshot is nil")
+                return
+            }
+            
+            let numberOfProducts = snapshot.documents.count
+            
+            DispatchQueue.main.async {
+                self.idTextField.text = "\(numberOfProducts + 3)"
+            }
         }
     }
     
