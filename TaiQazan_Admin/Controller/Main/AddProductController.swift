@@ -12,6 +12,8 @@ import FirebaseFirestore
 
 class AddProductController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    var productId = 0
+    
     private let productImageButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
@@ -20,18 +22,15 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
         return button
     }()
     
-    private let idTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Product ID"
-        tf.borderStyle = .roundedRect
-        
-        return tf
-    }()
-    
     private let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Product name"
-        tf.borderStyle = .roundedRect
+        tf.layer.borderColor = UIColor.rgb(red: 56, green: 182, blue: 255).cgColor
+        tf.layer.borderWidth = 1.5
+        tf.layer.cornerRadius = 8.0
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
+        tf.leftView = paddingView
+        tf.leftViewMode = .always
         
         return tf
     }()
@@ -39,7 +38,12 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
     private let priceTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Product price"
-        tf.borderStyle = .roundedRect
+        tf.layer.borderColor = UIColor.rgb(red: 56, green: 182, blue: 255).cgColor
+        tf.layer.borderWidth = 1.5
+        tf.layer.cornerRadius = 8.0
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
+        tf.leftView = paddingView
+        tf.leftViewMode = .always
         
         return tf
     }()
@@ -47,7 +51,12 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
     private let brandTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Product brand"
-        tf.borderStyle = .roundedRect
+        tf.layer.borderColor = UIColor.rgb(red: 56, green: 182, blue: 255).cgColor
+        tf.layer.borderWidth = 1.5
+        tf.layer.cornerRadius = 8.0
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
+        tf.leftView = paddingView
+        tf.leftViewMode = .always
         
         return tf
     }()
@@ -55,18 +64,24 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
     private let descriptionTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Product description"
-        tf.borderStyle = .roundedRect
+        tf.layer.borderColor = UIColor.rgb(red: 56, green: 182, blue: 255).cgColor
+        tf.layer.borderWidth = 1.5
+        tf.layer.cornerRadius = 8.0
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
+        tf.leftView = paddingView
+        tf.leftViewMode = .always
         
         return tf
     }()
     
-    private lazy var mainStackView = CustomStackView(axis: .vertical, arrangedSubviews: [idTextField, nameTextField, priceTextField, brandTextField, descriptionTextField], spacing: 10, alignment: .fill)
+    private lazy var mainStackView = CustomStackView(axis: .vertical, arrangedSubviews: [nameTextField, priceTextField, brandTextField, descriptionTextField], spacing: 10, alignment: .fill)
     
     private let addProductButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add product", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 6
         button.layer.masksToBounds = true
         
@@ -107,16 +122,11 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
                 return
             }
             
-            let numberOfProducts = snapshot.documents.count
-            
-            DispatchQueue.main.async {
-                self.idTextField.text = "\(numberOfProducts + 3)"
-            }
+            self.productId = snapshot.documents.count + 3
         }
     }
     
     private func setDelegates() {
-        idTextField.delegate = self
         nameTextField.delegate = self
         priceTextField.delegate = self
         brandTextField.delegate = self
@@ -141,20 +151,18 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
             make.height.equalTo(50)
         }
         
-        [idTextField, nameTextField, priceTextField, brandTextField, descriptionTextField].forEach { make in
+        [nameTextField, priceTextField, brandTextField, descriptionTextField].forEach { make in
             make.snp.makeConstraints { $0.height.equalTo(50)}
         }
     }
     
     @objc func addProductButtonTapped() {
         guard
-            let idText = idTextField.text,
             let nameText = nameTextField.text,
             let priceText = priceTextField.text,
             let brandText = brandTextField.text,
             let descriptionText = descriptionTextField.text,
             let image = productImageButton.imageView?.image,
-            idText.count > 0,
             nameText.count > 0,
             priceText.count > 0,
             brandText.count > 0,
@@ -194,7 +202,7 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
                 let db = Firestore.firestore()
                 var ref: DocumentReference? = nil
                 ref = db.collection("products").addDocument(data: [
-                    "id": idText,
+                    "id": self.productId,
                     "name": nameText,
                     "price": Int(priceText) ?? 0,
                     "description": descriptionText,
@@ -205,6 +213,10 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
                         print("Error adding document: \(error)")
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
+                        let alert = UIAlertController(title: "Product added", message: "Product name: \(nameText)", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(action)
+                        self.present(alert, animated: true)
                     }
                 }
             })

@@ -14,8 +14,10 @@ class TabBarController: UITabBarController {
         viewControllers = [
             createNavController(vc: AddProductController(), title: "Main", imageName: "plus.rectangle.fill"),
             createNavController(vc: OrderViewController(), title: "Orders", imageName: "cart.fill"),
-            createNavController(vc: ChatViewController(), title: "Chat", imageName: "message.fill"),
+            createNavController(vc: SupportTableController(), title: "Chat", imageName: "message.fill"),
         ]
+        
+        tabBar.tintColor = UIColor.rgb(red: 56, green: 182, blue: 255)
         
     }
     

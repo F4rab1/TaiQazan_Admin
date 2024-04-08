@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D342121B2BC4614D00F17838 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342121A2BC4614D00F17838 /* UIColorExtension.swift */; };
+		D342121E2BC464A000F17838 /* SupportTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342121D2BC464A000F17838 /* SupportTableController.swift */; };
+		D34212202BC4652100F17838 /* SupportChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342121F2BC4652100F17838 /* SupportChatController.swift */; };
+		D34212232BC4658800F17838 /* ChatFirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34212222BC4658800F17838 /* ChatFirebaseService.swift */; };
+		D34212262BC465C900F17838 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34212252BC465C900F17838 /* ChatModel.swift */; };
+		D34212292BC4661400F17838 /* SupportTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34212282BC4661400F17838 /* SupportTableCell.swift */; };
+		D342122C2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342122B2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift */; };
+		D342122E2BC466AA00F17838 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D342122D2BC466AA00F17838 /* ColorManager.swift */; };
+		D34212312BC4674600F17838 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = D34212302BC4674600F17838 /* MessageKit */; };
+		D34212342BC467C200F17838 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D34212332BC467C200F17838 /* SDWebImage */; };
+		D34212372BC4681D00F17838 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D34212362BC4681D00F17838 /* NVActivityIndicatorView */; };
+		D342123A2BC46AFA00F17838 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D34212392BC46AFA00F17838 /* FirebaseAuth */; };
 		D37B4E902B79D46600C52ACA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37B4E8F2B79D46600C52ACA /* TabBarController.swift */; };
 		D3AF3E382B72A3D800344792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E372B72A3D800344792 /* AppDelegate.swift */; };
 		D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E392B72A3D800344792 /* SceneDelegate.swift */; };
@@ -14,7 +26,6 @@
 		D3AF3E412B72A3DA00344792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E402B72A3DA00344792 /* Assets.xcassets */; };
 		D3AF3E442B72A3DA00344792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E422B72A3DA00344792 /* LaunchScreen.storyboard */; };
 		D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */; };
-		D3F097692B822B0A00668265 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F097682B822B0A00668265 /* ChatViewController.swift */; };
 		D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976A2B822C2200668265 /* OrderViewController.swift */; };
 		D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976D2B823DD900668265 /* OrderCell.swift */; };
 		D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */; };
@@ -27,6 +38,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D342121A2BC4614D00F17838 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		D342121D2BC464A000F17838 /* SupportTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableController.swift; sourceTree = "<group>"; };
+		D342121F2BC4652100F17838 /* SupportChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportChatController.swift; sourceTree = "<group>"; };
+		D34212222BC4658800F17838 /* ChatFirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFirebaseService.swift; sourceTree = "<group>"; };
+		D34212252BC465C900F17838 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		D34212282BC4661400F17838 /* SupportTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableCell.swift; sourceTree = "<group>"; };
+		D342122B2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputBarAccessoryViewDelegate.swift; sourceTree = "<group>"; };
+		D342122D2BC466AA00F17838 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		D37B4E8F2B79D46600C52ACA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D3AF3E342B72A3D800344792 /* TaiQazan_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaiQazan_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3AF3E372B72A3D800344792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +55,6 @@
 		D3AF3E432B72A3DA00344792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3AF3E452B72A3DA00344792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
-		D3F097682B822B0A00668265 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D3F0976A2B822C2200668265 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		D3F0976D2B823DD900668265 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -49,22 +67,67 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34212342BC467C200F17838 /* SDWebImage in Frameworks */,
 				D3F3908F2B779A89000D8877 /* FirebaseDatabase in Frameworks */,
+				D34212372BC4681D00F17838 /* NVActivityIndicatorView in Frameworks */,
 				D3F390932B779A89000D8877 /* FirebaseStorage in Frameworks */,
 				D3F3908C2B779A56000D8877 /* SnapKit in Frameworks */,
 				D3F390912B779A89000D8877 /* FirebaseFirestore in Frameworks */,
+				D34212312BC4674600F17838 /* MessageKit in Frameworks */,
+				D342123A2BC46AFA00F17838 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D342121C2BC4648500F17838 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D342121D2BC464A000F17838 /* SupportTableController.swift */,
+				D342121F2BC4652100F17838 /* SupportChatController.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		D34212212BC4657300F17838 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D34212222BC4658800F17838 /* ChatFirebaseService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D34212242BC465B400F17838 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D34212252BC465C900F17838 /* ChatModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D34212272BC465FF00F17838 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D34212282BC4661400F17838 /* SupportTableCell.swift */,
+				D342122B2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		D34212382BC46AFA00F17838 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D37B4E8E2B79D3E200C52ACA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D342121C2BC4648500F17838 /* Support */,
 				D3F097702B824B9400668265 /* Main */,
 				D3F0976F2B824B6C00668265 /* Orders */,
-				D3F097712B824BA000668265 /* Chat */,
 				D37B4E8F2B79D46600C52ACA /* TabBarController.swift */,
 			);
 			path = Controller;
@@ -75,6 +138,7 @@
 			children = (
 				D3AF3E362B72A3D800344792 /* TaiQazan_Admin */,
 				D3AF3E352B72A3D800344792 /* Products */,
+				D34212382BC46AFA00F17838 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +153,8 @@
 		D3AF3E362B72A3D800344792 /* TaiQazan_Admin */ = {
 			isa = PBXGroup;
 			children = (
+				D34212212BC4657300F17838 /* Service */,
+				D34212242BC465B400F17838 /* Model */,
 				D3F0976C2B823DA300668265 /* View */,
 				D37B4E8E2B79D3E200C52ACA /* Controller */,
 				D3AF3E4E2B72C28C00344792 /* Helpers */,
@@ -106,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */,
+				D342121A2BC4614D00F17838 /* UIColorExtension.swift */,
+				D342122D2BC466AA00F17838 /* ColorManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -113,6 +181,7 @@
 		D3F0976C2B823DA300668265 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D34212272BC465FF00F17838 /* Support */,
 				D3F097742B824CE800668265 /* Orders */,
 			);
 			path = View;
@@ -133,14 +202,6 @@
 				D3AF3E3B2B72A3D800344792 /* AddProductController.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		D3F097712B824BA000668265 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				D3F097682B822B0A00668265 /* ChatViewController.swift */,
-			);
-			path = Chat;
 			sourceTree = "<group>";
 		};
 		D3F097742B824CE800668265 /* Orders */ = {
@@ -173,6 +234,10 @@
 				D3F3908E2B779A89000D8877 /* FirebaseDatabase */,
 				D3F390902B779A89000D8877 /* FirebaseFirestore */,
 				D3F390922B779A89000D8877 /* FirebaseStorage */,
+				D34212302BC4674600F17838 /* MessageKit */,
+				D34212332BC467C200F17838 /* SDWebImage */,
+				D34212362BC4681D00F17838 /* NVActivityIndicatorView */,
+				D34212392BC46AFA00F17838 /* FirebaseAuth */,
 			);
 			productName = TaiQazan_Admin;
 			productReference = D3AF3E342B72A3D800344792 /* TaiQazan_Admin.app */;
@@ -205,6 +270,9 @@
 			packageReferences = (
 				D3F3908A2B779A56000D8877 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				D3F3908D2B779A89000D8877 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D342122F2BC4674600F17838 /* XCRemoteSwiftPackageReference "MessageKit" */,
+				D34212322BC467C200F17838 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D34212352BC4681D00F17838 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = D3AF3E352B72A3D800344792 /* Products */;
 			projectDirPath = "";
@@ -233,16 +301,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34212232BC4658800F17838 /* ChatFirebaseService.swift in Sources */,
 				D3AF3E3C2B72A3D800344792 /* AddProductController.swift in Sources */,
 				D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */,
 				D3AF3E382B72A3D800344792 /* AppDelegate.swift in Sources */,
 				D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */,
+				D34212262BC465C900F17838 /* ChatModel.swift in Sources */,
+				D34212292BC4661400F17838 /* SupportTableCell.swift in Sources */,
+				D342121E2BC464A000F17838 /* SupportTableController.swift in Sources */,
+				D342122E2BC466AA00F17838 /* ColorManager.swift in Sources */,
 				D37B4E902B79D46600C52ACA /* TabBarController.swift in Sources */,
 				D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */,
-				D3F097692B822B0A00668265 /* ChatViewController.swift in Sources */,
 				D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */,
+				D342121B2BC4614D00F17838 /* UIColorExtension.swift in Sources */,
 				D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */,
 				D3F4C7762B852D0900CBEC8A /* OrderDescriptionCell.swift in Sources */,
+				D34212202BC4652100F17838 /* SupportChatController.swift in Sources */,
+				D342122C2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +529,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D342122F2BC4674600F17838 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		D34212322BC467C200F17838 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		D34212352BC4681D00F17838 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		D3F3908A2B779A56000D8877 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -473,6 +572,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D34212302BC4674600F17838 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D342122F2BC4674600F17838 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+		D34212332BC467C200F17838 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D34212322BC467C200F17838 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		D34212362BC4681D00F17838 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D34212352BC4681D00F17838 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		D34212392BC46AFA00F17838 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3F3908D2B779A89000D8877 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		D3F3908B2B779A56000D8877 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D3F3908A2B779A56000D8877 /* XCRemoteSwiftPackageReference "SnapKit" */;
