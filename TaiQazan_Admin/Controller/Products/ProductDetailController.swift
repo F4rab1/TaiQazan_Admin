@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 class ProductDetailController: UIViewController {
     
@@ -16,6 +17,12 @@ class ProductDetailController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
+        button.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.1)
+        button.layer.cornerRadius = 12
+        button.clipsToBounds = true
+        button.layer.borderWidth = 0.5
+        button.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+        button.contentMode = .scaleAspectFill
         
         return button
     }()
@@ -82,6 +89,10 @@ class ProductDetailController: UIViewController {
             priceTextField.text = "\(product.price ?? 0) ₸"
             brandTextField.text = product.brand
             descriptionTextField.text = product.description
+            if let url = URL(string: product.imageLink ?? "") {
+                productImageButton.sd_setImage(with: url, for: .normal)
+            }
+            
         }
         
         setupUI()
@@ -99,7 +110,7 @@ class ProductDetailController: UIViewController {
     private func setupConstraints() {
         productImageButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(200)
         }
         

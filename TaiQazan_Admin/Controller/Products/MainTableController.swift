@@ -64,6 +64,9 @@ extension MainTableController {
         cell.nameLabel.text = productResult.name
         cell.brandLabel.text = productResult.brand
         cell.priceLabel.text = "\(productResult.price ?? 0) ₸"
+        if let url = URL(string: productResult.imageLink ?? "") {
+            cell.productImageView.sd_setImage(with: url)
+        }
 
         return cell
     }

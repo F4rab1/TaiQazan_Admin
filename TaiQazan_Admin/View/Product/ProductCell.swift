@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 class ProductCell: UITableViewCell {
     
@@ -16,6 +17,10 @@ class ProductCell: UITableViewCell {
         let iv = UIImageView()
         iv.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
         iv.layer.cornerRadius = 12
+        iv.clipsToBounds = true
+        iv.layer.borderWidth = 0.5
+        iv.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+        iv.contentMode = .scaleAspectFill
         
         return iv
     }()
