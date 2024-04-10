@@ -26,8 +26,6 @@ class SupportTableCell: UITableViewCell {
         let view = UIImageView()
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFit
-        view.layer.cornerRadius = 20
-        view.layer.masksToBounds = true
         
         return view
     }()
@@ -82,14 +80,14 @@ extension SupportTableCell {
     
     private func setupConstraints() {
         chatImage.snp.makeConstraints {
-            $0.leading.equalTo(contentView.snp.leading).offset(20)
+            $0.leading.equalTo(contentView.snp.leading).offset(15)
             $0.top.bottom.equalToSuperview().inset(12)
             $0.size.equalTo(30)
         }
         
         chatNameLabel.snp.makeConstraints {
             $0.top.bottom.trailing.equalToSuperview().inset(13)
-            $0.leading.equalTo(chatImage.snp.trailing).offset(20)
+            $0.leading.equalTo(chatImage.snp.trailing).offset(15)
         }
         
         lineView.snp.makeConstraints {

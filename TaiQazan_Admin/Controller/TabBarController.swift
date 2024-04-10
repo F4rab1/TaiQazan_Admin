@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewControllers = [
-            createNavController(vc: AddProductController(), title: "Main", imageName: "plus.rectangle.fill"),
+            createNavController(vc: MainTableController(), title: "Main", imageName: "plus.rectangle.fill"),
             createNavController(vc: OrderViewController(), title: "Orders", imageName: "cart.fill"),
             createNavController(vc: SupportTableController(), title: "Chat", imageName: "message.fill"),
         ]

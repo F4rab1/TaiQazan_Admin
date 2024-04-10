@@ -11,7 +11,7 @@ import FirebaseAuth
 class SupportTableController: UITableViewController {
     
     private let auth = Auth.auth()
-    private var icons: [String] = ["beats.headphones", "brain.head.profile"]
+    private var icons: [String] = ["person", "person"]
     private var badges: [Int] = [0, 0]
     private var chats: [String] = []
     

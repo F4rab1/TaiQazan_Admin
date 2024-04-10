@@ -26,6 +26,9 @@
 		D3AF3E412B72A3DA00344792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E402B72A3DA00344792 /* Assets.xcassets */; };
 		D3AF3E442B72A3DA00344792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E422B72A3DA00344792 /* LaunchScreen.storyboard */; };
 		D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */; };
+		D3B6D18E2BC6575900FFE51E /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D18D2BC6575900FFE51E /* MainTableController.swift */; };
+		D3B6D1912BC660E700FFE51E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1902BC660E700FFE51E /* ProductCell.swift */; };
+		D3B6D1932BC6660400FFE51E /* VerticalStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1922BC6660400FFE51E /* VerticalStackViewExtension.swift */; };
 		D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976A2B822C2200668265 /* OrderViewController.swift */; };
 		D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976D2B823DD900668265 /* OrderCell.swift */; };
 		D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */; };
@@ -55,6 +58,9 @@
 		D3AF3E432B72A3DA00344792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3AF3E452B72A3DA00344792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
+		D3B6D18D2BC6575900FFE51E /* MainTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
+		D3B6D1902BC660E700FFE51E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		D3B6D1922BC6660400FFE51E /* VerticalStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackViewExtension.swift; sourceTree = "<group>"; };
 		D3F0976A2B822C2200668265 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		D3F0976D2B823DD900668265 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -172,15 +178,25 @@
 			isa = PBXGroup;
 			children = (
 				D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */,
+				D3B6D1922BC6660400FFE51E /* VerticalStackViewExtension.swift */,
 				D342121A2BC4614D00F17838 /* UIColorExtension.swift */,
 				D342122D2BC466AA00F17838 /* ColorManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D3B6D18F2BC660D600FFE51E /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				D3B6D1902BC660E700FFE51E /* ProductCell.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
 		D3F0976C2B823DA300668265 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D3B6D18F2BC660D600FFE51E /* Product */,
 				D34212272BC465FF00F17838 /* Support */,
 				D3F097742B824CE800668265 /* Orders */,
 			);
@@ -199,6 +215,7 @@
 		D3F097702B824B9400668265 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				D3B6D18D2BC6575900FFE51E /* MainTableController.swift */,
 				D3AF3E3B2B72A3D800344792 /* AddProductController.swift */,
 			);
 			path = Main;
@@ -305,16 +322,19 @@
 				D3AF3E3C2B72A3D800344792 /* AddProductController.swift in Sources */,
 				D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */,
 				D3AF3E382B72A3D800344792 /* AppDelegate.swift in Sources */,
+				D3B6D18E2BC6575900FFE51E /* MainTableController.swift in Sources */,
 				D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */,
 				D34212262BC465C900F17838 /* ChatModel.swift in Sources */,
 				D34212292BC4661400F17838 /* SupportTableCell.swift in Sources */,
 				D342121E2BC464A000F17838 /* SupportTableController.swift in Sources */,
 				D342122E2BC466AA00F17838 /* ColorManager.swift in Sources */,
+				D3B6D1932BC6660400FFE51E /* VerticalStackViewExtension.swift in Sources */,
 				D37B4E902B79D46600C52ACA /* TabBarController.swift in Sources */,
 				D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */,
 				D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */,
 				D342121B2BC4614D00F17838 /* UIColorExtension.swift in Sources */,
 				D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */,
+				D3B6D1912BC660E700FFE51E /* ProductCell.swift in Sources */,
 				D3F4C7762B852D0900CBEC8A /* OrderDescriptionCell.swift in Sources */,
 				D34212202BC4652100F17838 /* SupportChatController.swift in Sources */,
 				D342122C2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift in Sources */,
