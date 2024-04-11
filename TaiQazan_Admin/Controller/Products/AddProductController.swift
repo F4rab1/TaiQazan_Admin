@@ -122,7 +122,7 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
                 return
             }
             
-            self.productId = snapshot.documents.count + 3
+            self.productId = snapshot.documents.count + 5
         }
     }
     
@@ -202,7 +202,7 @@ class AddProductController: UIViewController, UIImagePickerControllerDelegate, U
                 let db = Firestore.firestore()
                 var ref: DocumentReference? = nil
                 ref = db.collection("products").addDocument(data: [
-                    "id": self.productId,
+                    "id": String(self.productId) ,
                     "name": nameText,
                     "price": Int(priceText) ?? 0,
                     "description": descriptionText,

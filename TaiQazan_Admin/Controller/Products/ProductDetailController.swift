@@ -8,8 +8,10 @@
 import UIKit
 import SnapKit
 import SDWebImage
+import FirebaseStorage
+import FirebaseFirestore
 
-class ProductDetailController: UIViewController {
+class ProductDetailController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var selectedProduct: Product?
     
@@ -95,16 +97,119 @@ class ProductDetailController: UIViewController {
             
         }
         
+        let editButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(editButtonTapped))
+        navigationItem.rightBarButtonItem = editButton
+        
         setupUI()
         setupConstraints()
     }
     
     private func setupUI() {
         view.backgroundColor = .white
+        productImageButton.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         
         [productImageButton, mainStackView].forEach {
             view.addSubview($0)
         }
+    }
+    
+    @objc func handlePlusPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            productImageButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func editButtonTapped() {
+        guard
+            let productID = selectedProduct?.id,
+            let nameText = nameTextField.text,
+            let priceText = priceTextField.text,
+            let brandText = brandTextField.text,
+            let descriptionText = descriptionTextField.text,
+            let image = productImageButton.imageView?.image,
+            nameText.count > 0,
+            priceText.count > 0,
+            brandText.count > 0,
+            descriptionText.count > 0,
+            image != UIImage(named: "plus_photo")
+        else {
+            let alert = UIAlertController(title: "Not all fields are filled in", message: "Fill in all the fields", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(action)
+            present(alert, animated: true)
+            
+            return
+        }
+        
+        guard let uploadData = image.jpegData(compressionQuality: 0.1) else { return }
+        
+        let filename = NSUUID().uuidString
+        
+        let storageRef = Storage.storage().reference().child("productImages").child(filename)
+        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, err) in
+            
+            if let err = err {
+                print("Failed to upload product image:", err)
+                return
+            }
+            
+            storageRef.downloadURL(completion: { (downloadURL, err) in
+                if let err = err {
+                    print("Failed to fetch downloadURL:", err)
+                    return
+                }
+                
+                guard let productImageURL = downloadURL?.absoluteString else { return }
+                
+                print("Successfully uploaded product image:", productImageURL)
+                
+                let db = Firestore.firestore()
+                
+                let collectionRef = db.collection("products")
+                let query = collectionRef.whereField("id", isEqualTo: productID)
+                
+                query.getDocuments { (querySnapshot, error) in
+                    
+                    if let error = error {
+                        print("Error fetching documents: \(error)")
+                        return
+                    }
+                    
+                    guard let documents = querySnapshot?.documents else {
+                        print("No documents found")
+                        return
+                    }
+                    
+                    for document in documents {
+                        document.reference.setData([
+                            "name": nameText,
+                            "price": Int(priceText) ?? 0,
+                            "description": descriptionText,
+                            "brand": brandText,
+                            "imageLink": productImageURL
+                        ], merge: true) { error in
+                            if let error = error {
+                                print("Error updating document: \(error)")
+                            } else {
+                                print("Document successfully updated")
+                                let alert = UIAlertController(title: "Product updated", message: "Product name: \(nameText)", preferredStyle: .alert)
+                                let action = UIAlertAction(title: "OK", style: .default)
+                                alert.addAction(action)
+                                self.present(alert, animated: true)
+                            }
+                        }
+                    }
+                }
+            })
+        })
     }
     
     private func setupConstraints() {
