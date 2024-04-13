@@ -6,11 +6,13 @@
 //
 
 import Firebase
+import FirebaseDatabase
 
 class ProductService {
     static let shared = ProductService()
     
     let db = Firestore.firestore()
+    var products: [Product] = []
     
     func fetchProducts(completion: @escaping ([Product], Error?) -> Void) {
         let collectionRef = db.collection("products")
@@ -27,19 +29,30 @@ class ProductService {
                 return
             }
             
-            var products: [Product] = []
             for document in documents {
                 do {
                     let data = document.data()
                     let jsonData = try JSONSerialization.data(withJSONObject: data)
                     let product = try JSONDecoder().decode(Product.self, from: jsonData)
-                    products.append(product)
+                    self.products.append(product)
                 } catch {
                     print("Error decoding product: \(error)")
                 }
             }
             
-            completion(products, nil)
+            completion(self.products, nil)
         }
+    }
+    
+    func fetchProductsWithSearchTerm(searchTerm: String, completion: @escaping ([Product], Error?) -> Void) {
+        var filteredProducts: [Product] = []
+        
+        for product in products {
+            if let name = product.name?.lowercased(), name.contains(searchTerm.lowercased()){
+                filteredProducts.append(product)
+            }
+        }
+        
+        completion(filteredProducts, nil)
     }
 }

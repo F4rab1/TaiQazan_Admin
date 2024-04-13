@@ -17,8 +17,7 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
     
     private let productImageButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "plus_photo"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
+        button.imageView?.contentMode = .scaleToFill
         button.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.1)
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
@@ -97,7 +96,7 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
             
         }
         
-        let editButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(editButtonTapped))
+        let editButton = UIBarButtonItem(title: "edit", style: .plain, target: self, action: #selector(editButtonTapped))
         navigationItem.rightBarButtonItem = editButton
         
         setupUI()

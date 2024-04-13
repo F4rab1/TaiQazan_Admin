@@ -8,7 +8,18 @@
 import UIKit
 import FirebaseAuth
 
-class MainTableController: UITableViewController {
+class MainTableController: UITableViewController, UISearchBarDelegate {
+    
+    fileprivate var productResults = [Product]()
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    
+    fileprivate let enterSearchTermLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please enter search term above..."
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,10 +29,44 @@ class MainTableController: UITableViewController {
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
         
+        setupUI()
+        setupConstraints()
+        setupSearchBar()
         fetchProducts()
     }
     
-    fileprivate var productResults = [Product]()
+    func setupUI() {
+        tableView.addSubview(enterSearchTermLabel)
+    }
+    
+    func setupConstraints() {
+        enterSearchTermLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(30)
+        }
+    }
+    
+    fileprivate func setupSearchBar() {
+        definesPresentationContext = true
+        navigationItem.searchController = self.searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.delegate = self
+    }
+    
+    var timer: Timer?
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        timer?.invalidate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            ProductService.shared.fetchProductsWithSearchTerm(searchTerm: searchText) { (res, err) in
+                self.productResults = res
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        })
+    }
     
     fileprivate func fetchProducts() {
         ProductService.shared.fetchProducts { (products, error) in
@@ -53,6 +98,7 @@ class MainTableController: UITableViewController {
 
 extension MainTableController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        enterSearchTermLabel.isHidden = productResults.count != 0
         return productResults.count
     }
 

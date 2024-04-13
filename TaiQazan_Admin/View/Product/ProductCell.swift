@@ -15,7 +15,6 @@ class ProductCell: UITableViewCell {
     
     let productImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
         iv.layer.cornerRadius = 12
         iv.clipsToBounds = true
         iv.layer.borderWidth = 0.5
