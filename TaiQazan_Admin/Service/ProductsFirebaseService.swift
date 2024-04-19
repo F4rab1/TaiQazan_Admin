@@ -29,6 +29,8 @@ class ProductService {
                 return
             }
             
+            self.products = []
+            
             for document in documents {
                 do {
                     let data = document.data()

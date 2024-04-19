@@ -8,14 +8,15 @@
 import UIKit
 import FirebaseAuth
 
-class MainTableController: UITableViewController, UISearchBarDelegate {
+class MainTableController: UITableViewController, UISearchBarDelegate{
     
     fileprivate var productResults = [Product]()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
+    private let refreshController = UIRefreshControl()
     
     fileprivate let enterSearchTermLabel: UILabel = {
         let label = UILabel()
-        label.text = "Please enter search term above..."
+        label.text = "No Products found"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
@@ -26,6 +27,8 @@ class MainTableController: UITableViewController, UISearchBarDelegate {
         view.backgroundColor = .white
         tableView.backgroundColor = ColorManager.mainBGColor
         tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
+        tableView.refreshControl = refreshController
+        refreshControl?.addTarget(self, action: #selector(refreshProductData(_:)), for: .valueChanged)
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
         
@@ -66,6 +69,22 @@ class MainTableController: UITableViewController, UISearchBarDelegate {
                 }
             }
         })
+    }
+    
+    @objc func refreshProductData(_ sender: Any) {
+        ProductService.shared.fetchProducts { (products, error) in
+            if let error = error {
+                print("Failed to fetch products:", error)
+                self.refreshController.endRefreshing()
+                return
+            }
+            
+            self.productResults = products
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.refreshController.endRefreshing()
+            }
+        }
     }
     
     fileprivate func fetchProducts() {
@@ -124,6 +143,18 @@ extension MainTableController {
         let vc = ProductDetailController()
         vc.selectedProduct = selectedProduct
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            productResults.remove(at: indexPath.row)
+            print("Deleted")
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
 

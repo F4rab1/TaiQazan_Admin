@@ -73,9 +73,6 @@ class ProductCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(stackView)
-        stackView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview().inset(16)
-        }
         
         setupConstraints()
     }
@@ -92,6 +89,11 @@ class ProductCell: UITableViewCell {
         editButton.snp.makeConstraints { make in
             make.width.equalTo(80)
             make.height.equalTo(32)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(14)
+            make.height.equalTo(120)
         }
     }
     
