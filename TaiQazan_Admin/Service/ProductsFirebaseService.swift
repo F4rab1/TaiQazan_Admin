@@ -57,4 +57,37 @@ class ProductService {
         
         completion(filteredProducts, nil)
     }
+    
+    func deleteProduct(withId productId: String, completion: @escaping (Error?) -> Void) {
+        let collectionRef = db.collection("products")
+        
+        collectionRef.whereField("id", isEqualTo: productId).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error querying product for deletion: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                print("No documents found for deletion")
+                completion(nil)
+                return
+            }
+            
+            if let document = documents.first {
+                document.reference.delete { error in
+                    if let error = error {
+                        print("Error deleting product: \(error)")
+                        completion(error)
+                    } else {
+                        print("Product deleted successfully")
+                        completion(nil)
+                    }
+                }
+            } else {
+                print("Product not found for deletion")
+                completion(nil)
+            }
+        }
+    }
 }

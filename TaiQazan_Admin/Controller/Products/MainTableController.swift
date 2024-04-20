@@ -151,11 +151,16 @@ extension MainTableController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            productResults.remove(at: indexPath.row)
-            print("Deleted")
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            let productToDelete = productResults[indexPath.row]
+            ProductService.shared.deleteProduct(withId: productToDelete.id ?? "") { error in
+                if let error = error {
+                    print("Error deleting product:", error)
+                } else {
+                    print("Product deleted successfully")
+                    self.productResults.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            }
         }
     }
 }
-
-
