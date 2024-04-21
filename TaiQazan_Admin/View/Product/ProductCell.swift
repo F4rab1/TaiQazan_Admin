@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class ProductCell: UITableViewCell {
+class ProductCell: UICollectionViewCell {
     
     static let identifier = "ProductCell"
     
@@ -69,8 +69,8 @@ class ProductCell: UITableViewCell {
         return stackview
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         addSubview(stackView)
         

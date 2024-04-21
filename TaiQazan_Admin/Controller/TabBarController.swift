@@ -13,7 +13,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .white
         viewControllers = [
-            createNavController(vc: MainTableController(), title: "Products", imageName: "bag.fill"),
+            createNavController(vc: MainCollectionController(), title: "Products", imageName: "bag.fill"),
             createNavController(vc: OrderViewController(), title: "Orders", imageName: "cart.fill"),
             createNavController(vc: SupportTableController(), title: "Chat", imageName: "message.fill"),
         ]

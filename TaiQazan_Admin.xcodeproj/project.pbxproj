@@ -20,13 +20,17 @@
 		D34212372BC4681D00F17838 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D34212362BC4681D00F17838 /* NVActivityIndicatorView */; };
 		D342123A2BC46AFA00F17838 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D34212392BC46AFA00F17838 /* FirebaseAuth */; };
 		D37B4E902B79D46600C52ACA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37B4E8F2B79D46600C52ACA /* TabBarController.swift */; };
+		D3A382F22BD59AC500ABD53A /* DiscountsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A382F12BD59AC500ABD53A /* DiscountsPageHeader.swift */; };
+		D3A382F42BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A382F32BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift */; };
+		D3A382F62BD59C3000ABD53A /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A382F52BD59C3000ABD53A /* BaseListController.swift */; };
+		D3A382F82BD59C9400ABD53A /* DiscountsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A382F72BD59C9400ABD53A /* DiscountsHeaderCell.swift */; };
 		D3AF3E382B72A3D800344792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E372B72A3D800344792 /* AppDelegate.swift */; };
 		D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E392B72A3D800344792 /* SceneDelegate.swift */; };
 		D3AF3E3C2B72A3D800344792 /* AddProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E3B2B72A3D800344792 /* AddProductController.swift */; };
 		D3AF3E412B72A3DA00344792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E402B72A3DA00344792 /* Assets.xcassets */; };
 		D3AF3E442B72A3DA00344792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3AF3E422B72A3DA00344792 /* LaunchScreen.storyboard */; };
 		D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */; };
-		D3B6D18E2BC6575900FFE51E /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D18D2BC6575900FFE51E /* MainTableController.swift */; };
+		D3B6D18E2BC6575900FFE51E /* MainCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D18D2BC6575900FFE51E /* MainCollectionController.swift */; };
 		D3B6D1912BC660E700FFE51E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1902BC660E700FFE51E /* ProductCell.swift */; };
 		D3B6D1932BC6660400FFE51E /* VerticalStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1922BC6660400FFE51E /* VerticalStackViewExtension.swift */; };
 		D3B6D1952BC66B7200FFE51E /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1942BC66B7200FFE51E /* ProductModel.swift */; };
@@ -53,6 +57,10 @@
 		D342122B2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputBarAccessoryViewDelegate.swift; sourceTree = "<group>"; };
 		D342122D2BC466AA00F17838 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		D37B4E8F2B79D46600C52ACA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D3A382F12BD59AC500ABD53A /* DiscountsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsPageHeader.swift; sourceTree = "<group>"; };
+		D3A382F32BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsHeaderHorizontalController.swift; sourceTree = "<group>"; };
+		D3A382F52BD59C3000ABD53A /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
+		D3A382F72BD59C9400ABD53A /* DiscountsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsHeaderCell.swift; sourceTree = "<group>"; };
 		D3AF3E342B72A3D800344792 /* TaiQazan_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaiQazan_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3AF3E372B72A3D800344792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3AF3E392B72A3D800344792 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +69,7 @@
 		D3AF3E432B72A3DA00344792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3AF3E452B72A3DA00344792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3AF3E4F2B72C2CF00344792 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
-		D3B6D18D2BC6575900FFE51E /* MainTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
+		D3B6D18D2BC6575900FFE51E /* MainCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionController.swift; sourceTree = "<group>"; };
 		D3B6D1902BC660E700FFE51E /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		D3B6D1922BC6660400FFE51E /* VerticalStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackViewExtension.swift; sourceTree = "<group>"; };
 		D3B6D1942BC66B7200FFE51E /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -189,6 +197,7 @@
 				D3B6D1922BC6660400FFE51E /* VerticalStackViewExtension.swift */,
 				D342121A2BC4614D00F17838 /* UIColorExtension.swift */,
 				D342122D2BC466AA00F17838 /* ColorManager.swift */,
+				D3A382F52BD59C3000ABD53A /* BaseListController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -197,6 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				D3B6D1902BC660E700FFE51E /* ProductCell.swift */,
+				D3A382F12BD59AC500ABD53A /* DiscountsPageHeader.swift */,
+				D3A382F72BD59C9400ABD53A /* DiscountsHeaderCell.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -223,9 +234,10 @@
 		D3F097702B824B9400668265 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D3B6D18D2BC6575900FFE51E /* MainTableController.swift */,
+				D3B6D18D2BC6575900FFE51E /* MainCollectionController.swift */,
 				D3B6D1982BC69A4300FFE51E /* ProductDetailController.swift */,
 				D3AF3E3B2B72A3D800344792 /* AddProductController.swift */,
+				D3A382F32BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -333,7 +345,8 @@
 				D3AF3E502B72C2CF00344792 /* UIStackViewExtension.swift in Sources */,
 				D3AF3E382B72A3D800344792 /* AppDelegate.swift in Sources */,
 				D3B6D1972BC66C3500FFE51E /* ProductsFirebaseService.swift in Sources */,
-				D3B6D18E2BC6575900FFE51E /* MainTableController.swift in Sources */,
+				D3A382F42BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift in Sources */,
+				D3B6D18E2BC6575900FFE51E /* MainCollectionController.swift in Sources */,
 				D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */,
 				D34212262BC465C900F17838 /* ChatModel.swift in Sources */,
 				D34212292BC4661400F17838 /* SupportTableCell.swift in Sources */,
@@ -344,7 +357,10 @@
 				D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */,
 				D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */,
 				D342121B2BC4614D00F17838 /* UIColorExtension.swift in Sources */,
+				D3A382F62BD59C3000ABD53A /* BaseListController.swift in Sources */,
 				D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */,
+				D3A382F22BD59AC500ABD53A /* DiscountsPageHeader.swift in Sources */,
+				D3A382F82BD59C9400ABD53A /* DiscountsHeaderCell.swift in Sources */,
 				D3B6D1912BC660E700FFE51E /* ProductCell.swift in Sources */,
 				D3F4C7762B852D0900CBEC8A /* OrderDescriptionCell.swift in Sources */,
 				D34212202BC4652100F17838 /* SupportChatController.swift in Sources */,

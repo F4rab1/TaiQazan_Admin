@@ -8,11 +8,12 @@
 import UIKit
 import FirebaseAuth
 
-class MainTableController: UITableViewController, UISearchBarDelegate{
+class MainCollectionController: BaseListController, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
     
     fileprivate var productResults = [Product]()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     private let refreshController = UIRefreshControl()
+    let headerId = "discountsId"
     
     fileprivate let enterSearchTermLabel: UILabel = {
         let label = UILabel()
@@ -25,10 +26,11 @@ class MainTableController: UITableViewController, UISearchBarDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        tableView.backgroundColor = ColorManager.mainBGColor
-        tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
-        tableView.refreshControl = refreshController
-        refreshControl?.addTarget(self, action: #selector(refreshProductData(_:)), for: .valueChanged)
+        collectionView.backgroundColor = ColorManager.mainBGColor
+        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: ProductCell.identifier)
+        collectionView.register(DiscountsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView.refreshControl = refreshController
+        refreshController.addTarget(self, action: #selector(refreshProductData(_:)), for: .valueChanged)
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
         
@@ -39,7 +41,7 @@ class MainTableController: UITableViewController, UISearchBarDelegate{
     }
     
     func setupUI() {
-        tableView.addSubview(enterSearchTermLabel)
+        view.addSubview(enterSearchTermLabel)
     }
     
     func setupConstraints() {
@@ -65,7 +67,7 @@ class MainTableController: UITableViewController, UISearchBarDelegate{
             ProductService.shared.fetchProductsWithSearchTerm(searchTerm: searchText) { (res, err) in
                 self.productResults = res
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                 }
             }
         })
@@ -81,7 +83,7 @@ class MainTableController: UITableViewController, UISearchBarDelegate{
             
             self.productResults = products
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.collectionView.reloadData()
                 self.refreshController.endRefreshing()
             }
         }
@@ -96,7 +98,7 @@ class MainTableController: UITableViewController, UISearchBarDelegate{
             
             self.productResults = products
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.collectionView.reloadData()
             }
         }
     }
@@ -115,15 +117,24 @@ class MainTableController: UITableViewController, UISearchBarDelegate{
     }
 }
 
-extension MainTableController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension MainCollectionController {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId, for: indexPath) as! DiscountsPageHeader
+        
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: 200)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         enterSearchTermLabel.isHidden = productResults.count != 0
         return productResults.count
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as! ProductCell
-        tableView.backgroundColor = .white
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: indexPath) as! ProductCell
         
         let productResult = productResults[indexPath.item]
         cell.nameLabel.text = productResult.name
@@ -132,35 +143,19 @@ extension MainTableController {
         if let url = URL(string: productResult.imageLink ?? "") {
             cell.productImageView.sd_setImage(with: url)
         }
-
+        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let selectedProduct = productResults[indexPath.row]
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedProduct = productResults[indexPath.item]
         
         let vc = ProductDetailController()
         vc.selectedProduct = selectedProduct
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let productToDelete = productResults[indexPath.row]
-            ProductService.shared.deleteProduct(withId: productToDelete.id ?? "") { error in
-                if let error = error {
-                    print("Error deleting product:", error)
-                } else {
-                    print("Product deleted successfully")
-                    self.productResults.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                }
-            }
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 120)
     }
 }
