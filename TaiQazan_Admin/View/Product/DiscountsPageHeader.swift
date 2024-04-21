@@ -25,7 +25,8 @@ class DiscountsPageHeader: UICollectionReusableView {
     
     func setupConstraints() {
         discountsHeaderHorizontalController.view.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(10)
         }
     }
     

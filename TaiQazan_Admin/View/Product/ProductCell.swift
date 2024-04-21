@@ -56,6 +56,13 @@ class ProductCell: UICollectionViewCell {
         return button
     }()
     
+    let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        
+        return view
+    }()
+    
     lazy var stackView: UIStackView = {
         let stackview = UIStackView()
         stackview.spacing = 12
@@ -73,6 +80,7 @@ class ProductCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(stackView)
+        addSubview(lineView)
         
         setupConstraints()
     }
@@ -93,7 +101,14 @@ class ProductCell: UICollectionViewCell {
         
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(14)
-            make.height.equalTo(120)
+            make.top.equalToSuperview().offset(-10)
+            make.bottom.equalTo(lineView.snp.top)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.leading.trailing.equalToSuperview().inset(14)
+            make.bottom.equalToSuperview()
         }
     }
     
