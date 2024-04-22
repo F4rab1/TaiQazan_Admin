@@ -27,6 +27,7 @@ class ProductCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Product name"
+        label.font = .boldSystemFont(ofSize: 18)
         
         return label
     }()
@@ -45,15 +46,17 @@ class ProductCell: UICollectionViewCell {
         return label
     }()
     
-    let editButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("EDIT", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        button.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
-        button.layer.cornerRadius = 16
+    let editButton: UILabel = {
+        let label = UILabel()
+        label.text = "Edit"
+        label.textColor = .white
+        label.font = .boldSystemFont(ofSize: 14)
+        label.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
+        label.layer.cornerRadius = 16
+        label.clipsToBounds = true
+        label.textAlignment = .center
         
-        return button
+        return label
     }()
     
     let lineView: UIView = {

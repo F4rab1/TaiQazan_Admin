@@ -80,7 +80,19 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
         return tf
     }()
     
-    private lazy var mainStackView = CustomStackView(axis: .vertical, arrangedSubviews: [nameTextField, priceTextField, brandTextField, descriptionTextField], spacing: 10, alignment: .fill)
+    private let editProductButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Edit product", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
+        button.layer.masksToBounds = true
+        
+        return button
+    }()
+    
+    private lazy var mainStackView = CustomStackView(axis: .vertical, arrangedSubviews: [nameTextField, priceTextField, brandTextField, descriptionTextField, editProductButton], spacing: 10, alignment: .fill)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,8 +108,8 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
             
         }
         
-        let editButton = UIBarButtonItem(title: "edit", style: .plain, target: self, action: #selector(editButtonTapped))
-        navigationItem.rightBarButtonItem = editButton
+//        let deleteButton = UIBarButtonItem(title: "delete", style: .plain, target: self, action: #selector(editButtonTapped))
+//        navigationItem.rightBarButtonItem = deleteButton
         
         setupUI()
         setupConstraints()
@@ -106,6 +118,7 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
     private func setupUI() {
         view.backgroundColor = .white
         productImageButton.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
+        editProductButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         
         [productImageButton, mainStackView].forEach {
             view.addSubview($0)
@@ -223,7 +236,7 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
-        [nameTextField, priceTextField, brandTextField, descriptionTextField].forEach { make in
+        [nameTextField, priceTextField, brandTextField, descriptionTextField, editProductButton].forEach { make in
             make.snp.makeConstraints { $0.height.equalTo(50)}
         }
     }

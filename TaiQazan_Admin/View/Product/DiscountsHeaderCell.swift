@@ -12,8 +12,8 @@ class DiscountsHeaderCell: UICollectionViewCell {
     let discountsLabel: UILabel = {
         let label = UILabel()
         label.text = "Tap the image to change discount image"
-        label.textColor = .blue
-        label.font = .boldSystemFont(ofSize: 12)
+        label.textColor =  UIColor.rgb(red: 60, green: 190, blue: 255)
+        label.font = .boldSystemFont(ofSize: 16)
         
         return label
     }()
