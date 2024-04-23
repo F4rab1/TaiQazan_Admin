@@ -11,7 +11,6 @@ import FirebaseAuth
 class MainCollectionController: BaseListController, UISearchBarDelegate, UICollectionViewDelegateFlowLayout, DiscountsHeaderHorizontalDelegate {
     
     var productResults = [Product]()
-    var discountsResults = [Discount]()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     private let refreshController = UIRefreshControl()
     let headerId = "discountsId"

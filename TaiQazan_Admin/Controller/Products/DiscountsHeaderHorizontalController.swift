@@ -17,6 +17,7 @@ class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerCont
     private let cellId = "cellId"
     var groupHeaderImage = ["dis1", "dis2", "dis3"]
     var selectedIndexPathItem: Int?
+    var discountsResults = [Discount]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,20 @@ class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerCont
        
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
+        }
+        
+        fetchDiscounts()
+    }
+    
+    fileprivate func fetchDiscounts() {
+        DiscountsService.shared.fetchDiscounts { (discounts, error) in
+            if let error = error {
+                print("Failed to fetch products:", error)
+                return
+            }
+
+            self.discountsResults = discounts
+            print(self.discountsResults)
         }
     }
     
