@@ -8,9 +8,10 @@
 import UIKit
 import FirebaseAuth
 
-class MainCollectionController: BaseListController, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
+class MainCollectionController: BaseListController, UISearchBarDelegate, UICollectionViewDelegateFlowLayout, DiscountsHeaderHorizontalDelegate {
     
-    fileprivate var productResults = [Product]()
+    var productResults = [Product]()
+    var discountsResults = [Discount]()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     private let refreshController = UIRefreshControl()
     let headerId = "discountsId"
@@ -120,8 +121,13 @@ class MainCollectionController: BaseListController, UISearchBarDelegate, UIColle
 extension MainCollectionController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId, for: indexPath) as! DiscountsPageHeader
+        header.discountsHeaderHorizontalController.delegate = self
         
         return header
+    }
+    
+    func didSelectImage(withPicker picker: UIImagePickerController) {
+        present(picker, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

@@ -108,8 +108,8 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
             
         }
         
-//        let deleteButton = UIBarButtonItem(title: "delete", style: .plain, target: self, action: #selector(editButtonTapped))
-//        navigationItem.rightBarButtonItem = deleteButton
+        let deleteButton = UIBarButtonItem(title: "delete", style: .plain, target: self, action: #selector(deleteButtonTapped))
+        navigationItem.rightBarButtonItem = deleteButton
         
         setupUI()
         setupConstraints()
@@ -222,6 +222,41 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
                 }
             })
         })
+    }
+    
+    @objc func deleteButtonTapped() {
+        guard let productID = selectedProduct?.id else {
+            print("Product ID is nil")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let productsRef = db.collection("products")
+        
+        productsRef.whereField("id", isEqualTo: productID).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting document: \(error)")
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                print("No documents found")
+                return
+            }
+            
+            for document in documents {
+                document.reference.delete { error in
+                    if let error = error {
+                        print("Error deleting document: \(error)")
+                    } else {
+                        let alert = UIAlertController(title: "Product deleted", message: String(self.selectedProduct?.name ?? ""), preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(action)
+                        self.present(alert, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     private func setupConstraints() {

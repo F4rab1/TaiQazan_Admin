@@ -61,7 +61,7 @@ class ProductCell: UICollectionViewCell {
     
     let lineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(white: 0.5, alpha: 0.3)
         
         return view
     }()
