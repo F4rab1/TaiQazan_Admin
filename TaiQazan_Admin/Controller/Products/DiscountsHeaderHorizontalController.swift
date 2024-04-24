@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol DiscountsHeaderHorizontalDelegate: AnyObject {
     func didSelectImage(withPicker picker: UIImagePickerController)
@@ -15,7 +16,6 @@ class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerCont
     
     weak var delegate: DiscountsHeaderHorizontalDelegate?
     private let cellId = "cellId"
-    var groupHeaderImage = ["dis1", "dis2", "dis3"]
     var selectedIndexPathItem: Int?
     var discountsResults = [Discount]()
     
@@ -32,26 +32,29 @@ class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerCont
     }
     
     fileprivate func fetchDiscounts() {
-        DiscountsService.shared.fetchDiscounts { (discounts, error) in
+        DiscountService.shared.fetchDiscounts { (discounts, error) in
             if let error = error {
                 print("Failed to fetch products:", error)
                 return
             }
 
             self.discountsResults = discounts
-            print(self.discountsResults)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return groupHeaderImage.count
+        return discountsResults.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DiscountsHeaderCell
-        let imageName = groupHeaderImage[indexPath.item]
-        cell.discountImageView.image = UIImage(named: imageName)
+        if let imageURL = URL(string: discountsResults[indexPath.item].imageLink ?? "") {
+            cell.discountImageView.sd_setImage(with: imageURL)
+        }
         
         return cell
     }
@@ -70,7 +73,7 @@ class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerCont
                 selectedCell.discountImageView.image = originalImage
                 if let discountId = selectedIndexPathItem {
                     print(discountId)
-                    DiscountsService.shared.updateDiscount(discountId: discountId, image: originalImage) { discount, err in
+                    DiscountService.shared.updateDiscount(discountId: discountId, image: originalImage) { discount, err in
                         print(discount, err ?? "error when uploading discount image")
                     }
                 }

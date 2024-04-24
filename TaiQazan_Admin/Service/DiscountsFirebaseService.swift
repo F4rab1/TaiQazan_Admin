@@ -9,8 +9,8 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-class DiscountsService {
-    static let shared = DiscountsService()
+class DiscountService {
+    static let shared = DiscountService()
     
     let db = Firestore.firestore()
     var discounts: [Discount] = []
