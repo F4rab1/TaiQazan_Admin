@@ -21,6 +21,7 @@
 		D34212342BC467C200F17838 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D34212332BC467C200F17838 /* SDWebImage */; };
 		D34212372BC4681D00F17838 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D34212362BC4681D00F17838 /* NVActivityIndicatorView */; };
 		D342123A2BC46AFA00F17838 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D34212392BC46AFA00F17838 /* FirebaseAuth */; };
+		D3470F7C2BE0DF9A006B3A0B /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3470F7B2BE0DF9A006B3A0B /* HorizontalSnappingController.swift */; };
 		D37B4E902B79D46600C52ACA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37B4E8F2B79D46600C52ACA /* TabBarController.swift */; };
 		D3A382F22BD59AC500ABD53A /* DiscountsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A382F12BD59AC500ABD53A /* DiscountsPageHeader.swift */; };
 		D3A382F42BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A382F32BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift */; };
@@ -60,6 +61,7 @@
 		D34212282BC4661400F17838 /* SupportTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableCell.swift; sourceTree = "<group>"; };
 		D342122B2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputBarAccessoryViewDelegate.swift; sourceTree = "<group>"; };
 		D342122D2BC466AA00F17838 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		D3470F7B2BE0DF9A006B3A0B /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
 		D37B4E8F2B79D46600C52ACA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D3A382F12BD59AC500ABD53A /* DiscountsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsPageHeader.swift; sourceTree = "<group>"; };
 		D3A382F32BD59BEA00ABD53A /* DiscountsHeaderHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsHeaderHorizontalController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				D342121A2BC4614D00F17838 /* UIColorExtension.swift */,
 				D342122D2BC466AA00F17838 /* ColorManager.swift */,
 				D3A382F52BD59C3000ABD53A /* BaseListController.swift */,
+				D3470F7B2BE0DF9A006B3A0B /* HorizontalSnappingController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				D34212202BC4652100F17838 /* SupportChatController.swift in Sources */,
 				D3B6D1952BC66B7200FFE51E /* ProductModel.swift in Sources */,
 				D342122C2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift in Sources */,
+				D3470F7C2BE0DF9A006B3A0B /* HorizontalSnappingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ protocol DiscountsHeaderHorizontalDelegate: AnyObject {
     func didSelectImage(withPicker picker: UIImagePickerController)
 }
 
-class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
+class DiscountsHeaderHorizontalController: HorizontalSnappingController, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
     weak var delegate: DiscountsHeaderHorizontalDelegate?
     private let cellId = "cellId"
@@ -23,10 +23,7 @@ class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerCont
         super.viewDidLoad()
        
         collectionView.register(DiscountsHeaderCell.self, forCellWithReuseIdentifier: cellId)
-       
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
+        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         
         fetchDiscounts()
     }
@@ -90,6 +87,6 @@ class DiscountsHeaderHorizontalController: BaseListController, UIImagePickerCont
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return .init(top: 0, left: 16, bottom: 0, right: 0)
+        return .init(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
