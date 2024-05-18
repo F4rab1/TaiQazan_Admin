@@ -20,6 +20,10 @@ class MainCollectionController: BaseListController, UISearchBarDelegate, UIColle
         label.text = "No Products found"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor =  UIColor.rgb(red: 60, green: 190, blue: 255)
+        label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
+        
         return label
     }()
     
@@ -46,8 +50,9 @@ class MainCollectionController: BaseListController, UISearchBarDelegate, UIColle
     
     func setupConstraints() {
         enterSearchTermLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().inset(30)
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalTo(220)
+            make.height.equalTo(30)
         }
     }
     
@@ -130,11 +135,12 @@ extension MainCollectionController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 200)
+        return productResults.count == 0 ? .zero : .init(width: view.frame.width, height: 200)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         enterSearchTermLabel.isHidden = productResults.count != 0
+        
         return productResults.count
     }
     
