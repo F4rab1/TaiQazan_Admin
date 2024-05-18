@@ -20,16 +20,25 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
         return tableView
     }()
     
+    private let segmentedControl: UISegmentedControl = {
+        let sc = UISegmentedControl(items: ["Created", "Collecting", "Collected", "Delivering", "Delivered"])
+        sc.selectedSegmentIndex = 0
+        sc.selectedSegmentTintColor = UIColor.rgb(red: 56, green: 182, blue: 255)
+        
+        return sc
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         
         setupUI()
         setDelegates()
         setupConstraints()
-        fetchOrderIDs()
+        fetchOrders()
     }
     
-    private func fetchOrderIDs() {
+    private func fetchOrders() {
         OrderService.shared.fetchOrders { orders, error in
             if let error = error {
                 print("Failed to fetch orders:", error)
@@ -45,6 +54,7 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private func setupUI() {
         view.backgroundColor = .white
+        view.addSubview(segmentedControl)
         view.addSubview(tableView)
     }
     
@@ -54,9 +64,20 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     private func setupConstraints() {
-        tableView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        segmentedControl.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(segmentedControl.snp.bottom)
+            make.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        // Fetch orders based on selected segment
+        fetchOrders()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
