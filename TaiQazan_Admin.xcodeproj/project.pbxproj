@@ -39,6 +39,8 @@
 		D3B6D1952BC66B7200FFE51E /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1942BC66B7200FFE51E /* ProductModel.swift */; };
 		D3B6D1972BC66C3500FFE51E /* ProductsFirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1962BC66C3500FFE51E /* ProductsFirebaseService.swift */; };
 		D3B6D1992BC69A4300FFE51E /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6D1982BC69A4300FFE51E /* ProductDetailController.swift */; };
+		D3DE910F2BF8C4C90032F802 /* OrdersFirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DE910E2BF8C4C90032F802 /* OrdersFirebaseService.swift */; };
+		D3DE91112BF8C65F0032F802 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DE91102BF8C65F0032F802 /* OrderModel.swift */; };
 		D3F0976B2B822C2200668265 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976A2B822C2200668265 /* OrderViewController.swift */; };
 		D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0976D2B823DD900668265 /* OrderCell.swift */; };
 		D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */; };
@@ -81,6 +83,8 @@
 		D3B6D1942BC66B7200FFE51E /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		D3B6D1962BC66C3500FFE51E /* ProductsFirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsFirebaseService.swift; sourceTree = "<group>"; };
 		D3B6D1982BC69A4300FFE51E /* ProductDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailController.swift; sourceTree = "<group>"; };
+		D3DE910E2BF8C4C90032F802 /* OrdersFirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersFirebaseService.swift; sourceTree = "<group>"; };
+		D3DE91102BF8C65F0032F802 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		D3F0976A2B822C2200668265 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		D3F0976D2B823DD900668265 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 				D34212222BC4658800F17838 /* ChatFirebaseService.swift */,
 				D3B6D1962BC66C3500FFE51E /* ProductsFirebaseService.swift */,
 				D32DE24C2BD77B6D0026B758 /* DiscountsFirebaseService.swift */,
+				D3DE910E2BF8C4C90032F802 /* OrdersFirebaseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 				D34212252BC465C900F17838 /* ChatModel.swift */,
 				D3B6D1942BC66B7200FFE51E /* ProductModel.swift */,
 				D32DE24E2BD77BD00026B758 /* DiscountModel.swift */,
+				D3DE91102BF8C65F0032F802 /* OrderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -365,12 +371,14 @@
 				D3B6D1932BC6660400FFE51E /* VerticalStackViewExtension.swift in Sources */,
 				D37B4E902B79D46600C52ACA /* TabBarController.swift in Sources */,
 				D3F097732B824BE800668265 /* OrderDescriptionViewController.swift in Sources */,
+				D3DE910F2BF8C4C90032F802 /* OrdersFirebaseService.swift in Sources */,
 				D3F0976E2B823DD900668265 /* OrderCell.swift in Sources */,
 				D342121B2BC4614D00F17838 /* UIColorExtension.swift in Sources */,
 				D3A382F62BD59C3000ABD53A /* BaseListController.swift in Sources */,
 				D3AF3E3A2B72A3D800344792 /* SceneDelegate.swift in Sources */,
 				D32DE24F2BD77BD00026B758 /* DiscountModel.swift in Sources */,
 				D3A382F22BD59AC500ABD53A /* DiscountsPageHeader.swift in Sources */,
+				D3DE91112BF8C65F0032F802 /* OrderModel.swift in Sources */,
 				D3A382F82BD59C9400ABD53A /* DiscountsHeaderCell.swift in Sources */,
 				D3B6D1912BC660E700FFE51E /* ProductCell.swift in Sources */,
 				D3F4C7762B852D0900CBEC8A /* OrderDescriptionCell.swift in Sources */,

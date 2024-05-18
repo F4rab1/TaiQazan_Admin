@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 class OrderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private var orderIDs: [String] = []
+    private var orders: [Order] = []
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -30,24 +30,16 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     private func fetchOrderIDs() {
-        let db = Firestore.firestore()
-        let ordersRef = db.collection("orders")
-        
-        ordersRef.getDocuments { (snapshot, error) in
+        OrderService.shared.fetchOrders { orders, error in
             if let error = error {
-                print("Error fetching documents: \(error)")
+                print("Failed to fetch orders:", error)
                 return
             }
             
-            guard let snapshot = snapshot else {
-                print("Snapshot is nil")
-                return
+            self.orders = orders
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
-            
-            for document in snapshot.documents {
-                self.orderIDs.append(document.documentID)
-            }
-            self.tableView.reloadData()
         }
     }
     
@@ -68,19 +60,22 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderIDs.count
+        print(orders.count)
+        return orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Order", for: indexPath) as! OrderCell
-        cell.configure(with: orderIDs[indexPath.row])
+        let order = orders[indexPath.item]
+        cell.configure(with: order.id, status: order.status)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let orderDescriptionVC = OrderDescriptionViewController()
-        orderDescriptionVC.title = orderIDs[indexPath.row]
+        let order = orders[indexPath.item]
+        orderDescriptionVC.title = order.id
         navigationController?.pushViewController(orderDescriptionVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
