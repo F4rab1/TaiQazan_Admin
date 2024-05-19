@@ -58,6 +58,33 @@ class ProductService {
         completion(filteredProducts, nil)
     }
     
+    func fetchProductWithId(id: String, completion: @escaping (Product?, Error?) -> Void) {
+        let collectionRef = db.collection("products").whereField("id", isEqualTo: id)
+        collectionRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                completion(nil, error)
+                return
+            }
+            
+            guard let document = querySnapshot?.documents.first else {
+                print("No document found")
+                completion(nil, nil)
+                return
+            }
+            
+            do {
+                let data = document.data()
+                let jsonData = try JSONSerialization.data(withJSONObject: data)
+                let product = try JSONDecoder().decode(Product.self, from: jsonData)
+                completion(product, nil)
+            } catch {
+                print("Error decoding product: \(error)")
+                completion(nil, error)
+            }
+        }
+    }
+    
     func deleteProduct(withId productId: String, completion: @escaping (Error?) -> Void) {
         let collectionRef = db.collection("products")
         
