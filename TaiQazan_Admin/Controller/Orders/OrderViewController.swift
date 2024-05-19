@@ -14,7 +14,6 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.separatorStyle = .none
         tableView.register(OrderCell.self, forCellReuseIdentifier: "Order")
         
         return tableView
@@ -35,11 +34,11 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
         setupUI()
         setDelegates()
         setupConstraints()
-        fetchOrders()
+        fetchOrders(status: segmentedControl.selectedSegmentIndex + 1)
     }
     
-    private func fetchOrders() {
-        OrderService.shared.fetchOrders { orders, error in
+    private func fetchOrders(status: Int) {
+        OrderService.shared.fetchOrders(by: status) { orders, error in
             if let error = error {
                 print("Failed to fetch orders:", error)
                 return
@@ -76,12 +75,14 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        // Fetch orders based on selected segment
-        fetchOrders()
+        fetchOrders(status: (segmentedControl.selectedSegmentIndex + 1))
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 48
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(orders.count)
         return orders.count
     }
     
@@ -94,10 +95,10 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let orderDescriptionVC = OrderDescriptionViewController()
+        let vc = OrderDescriptionViewController()
         let order = orders[indexPath.item]
-        orderDescriptionVC.title = order.id
-        navigationController?.pushViewController(orderDescriptionVC, animated: true)
+        vc.selectedOrder = order
+        navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

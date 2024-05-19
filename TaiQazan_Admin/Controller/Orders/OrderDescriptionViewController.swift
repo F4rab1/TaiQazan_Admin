@@ -9,18 +9,21 @@ import UIKit
 
 class OrderDescriptionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let tableView: UITableView = {
+    var selectedOrder: Order?
+    var productDataArray: [Product] = []
+    
+    private let productsTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.register(OrderDescriptionCell.self, forCellReuseIdentifier: "OrderDescription")
+        tableView.register(OrderProductCell.self, forCellReuseIdentifier: "OrderProductCell")
         
         return tableView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupUI()
         setDelegates()
         setupConstraints()
@@ -28,32 +31,49 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
     
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubview(tableView)
+        view.addSubview(productsTableView)
     }
     
     private func setDelegates() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        productsTableView.dataSource = self
+        productsTableView.delegate = self
     }
     
     private func setupConstraints() {
-        tableView.snp.makeConstraints { make in
+        productsTableView.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return selectedOrder?.products.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderDescription", for: indexPath) as! OrderDescriptionCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderProductCell", for: indexPath) as! OrderProductCell
+        let rowNumber = indexPath.row
+        let idOfProduct = selectedOrder?.products[rowNumber].id ?? "0"
+        
+        ProductService.shared.fetchProductWithId(id: idOfProduct) { product, error in
+            if let error = error {
+                print("Failed to fetch product:", error)
+                return
+            }
+
+            if let product = product {
+                DispatchQueue.main.async {
+                    cell.product = product
+                    cell.quantity = self.selectedOrder?.products[rowNumber].count
+                }
+            }
+        }
+        
         
         return cell
     }
-
+    
 }

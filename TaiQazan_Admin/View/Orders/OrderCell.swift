@@ -32,7 +32,7 @@ class OrderCell: UITableViewCell {
         label.textColor = .white
         label.font = .boldSystemFont(ofSize: 16)
         label.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
-        label.layer.cornerRadius = 16
+        label.layer.cornerRadius = 8
         label.clipsToBounds = true
         label.textAlignment = .center
         

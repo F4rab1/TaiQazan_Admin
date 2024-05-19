@@ -14,11 +14,11 @@ class OrderService {
     let db = Firestore.firestore()
     var orders: [Order] = []
     
-    func fetchOrders(completion: @escaping ([Order], Error?) -> Void) {
+    func fetchOrders(by status: Int, completion: @escaping ([Order], Error?) -> Void) {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE MMM dd, yyyy hh:mm a"
         
-        let collectionRef = db.collection("orders")
+        let collectionRef = db.collection("orders").whereField("status", isEqualTo: status)
         collectionRef.getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -37,7 +37,6 @@ class OrderService {
                     var order = try document.data(as: Order.self)
                     if let timestamp = document.get("createdDate") as? Timestamp {
                         let dateString = formatter.string(from: timestamp.dateValue())
-                        print("Formatted date: \(dateString)")
                         order.formattedCreatedDate = dateString
                     }
                     return order
@@ -46,7 +45,6 @@ class OrderService {
                     return nil
                 }
             }
-            print(self.orders)
             
             completion(self.orders, nil)
         }

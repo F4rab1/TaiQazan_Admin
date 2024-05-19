@@ -6,56 +6,78 @@
 //
 
 import UIKit
+import SDWebImage
 
-class OrderDescriptionCell: UITableViewCell {
+class OrderProductCell: UITableViewCell {
+    
+    var product: Product? {
+        didSet {
+            guard let product = product else { return }
+            nameLabel.text = product.name
+            priceLabel.text = "\(product.price ?? 0) ₸ per unit"
+            if let url = URL(string: product.imageLink ?? "") {
+                productImageView.sd_setImage(with: url)
+            }
+        }
+    }
+    
+    var quantity: Int? {
+        didSet {
+            guard let quantity = quantity else { return }
+            quantityLabel.text = "\(quantity)"
+            totalPriceLabel.text = "\(quantity * (product?.price ?? 0)) ₸"
+        }
+    }
     
     let productImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "galamilk")
-        iv.backgroundColor = .blue
         iv.layer.cornerRadius = 12
+        iv.clipsToBounds = true
+        iv.layer.borderWidth = 0.5
+        iv.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+        iv.contentMode = .scaleAspectFill
         
         return iv
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Bio-ice cream Dr.Galamilk Vanilla+Probiotic 100 g"
-        
-        return label
-    }()
-    
-    let brandLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Galamilk"
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 14)
         
         return label
     }()
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "2310 ₸"
+        label.font = .boldSystemFont(ofSize: 14)
         
         return label
     }()
     
     let quantityLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .lightGray
-        label.layer.cornerRadius = 16
+        label.backgroundColor = UIColor.rgb(red: 211, green: 211, blue: 211)
+        label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
-        label.textAlignment = .center 
-        label.text = "2"
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    let totalPriceLabel: UILabel = {
+        let label = UILabel()
         
         return label
     }()
     
     lazy var labelsStackView: UIStackView = {
         let stackview = UIStackView()
+        stackview.alignment = .top
         stackview.axis = .vertical
         [nameLabel,
-         brandLabel,
-         priceLabel].forEach { stackview.addArrangedSubview($0) }
+         priceLabel,
+         quantityLabel].forEach { stackview.addArrangedSubview($0) }
         
         return stackview
     }()
@@ -66,7 +88,7 @@ class OrderDescriptionCell: UITableViewCell {
         stackview.alignment = .center
         [productImageView,
          labelsStackView,
-         quantityLabel].forEach { stackview.addArrangedSubview($0) }
+         totalPriceLabel].forEach { stackview.addArrangedSubview($0) }
         
         return stackview
     }()
@@ -86,12 +108,11 @@ class OrderDescriptionCell: UITableViewCell {
     
     func setupConstraints() {
         productImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(64)
+            make.width.height.equalTo(80)
         }
         
         quantityLabel.snp.makeConstraints { make in
-            make.width.equalTo(32)
-            make.height.equalTo(32)
+            make.width.equalTo(40)
         }
         
         stackView.snp.makeConstraints { make in

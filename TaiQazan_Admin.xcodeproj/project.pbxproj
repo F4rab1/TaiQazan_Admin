@@ -49,7 +49,7 @@
 		D3F3908F2B779A89000D8877 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D3F3908E2B779A89000D8877 /* FirebaseDatabase */; };
 		D3F390912B779A89000D8877 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D3F390902B779A89000D8877 /* FirebaseFirestore */; };
 		D3F390932B779A89000D8877 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D3F390922B779A89000D8877 /* FirebaseStorage */; };
-		D3F4C7762B852D0900CBEC8A /* OrderDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C7752B852D0900CBEC8A /* OrderDescriptionCell.swift */; };
+		D3F4C7762B852D0900CBEC8A /* OrderProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C7752B852D0900CBEC8A /* OrderProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,7 +89,7 @@
 		D3F0976D2B823DD900668265 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		D3F097722B824BE800668265 /* OrderDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDescriptionViewController.swift; sourceTree = "<group>"; };
 		D3F390872B7798E2000D8877 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D3F4C7752B852D0900CBEC8A /* OrderDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDescriptionCell.swift; sourceTree = "<group>"; };
+		D3F4C7752B852D0900CBEC8A /* OrderProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				D3F0976D2B823DD900668265 /* OrderCell.swift */,
-				D3F4C7752B852D0900CBEC8A /* OrderDescriptionCell.swift */,
+				D3F4C7752B852D0900CBEC8A /* OrderProductCell.swift */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -381,7 +381,7 @@
 				D3DE91112BF8C65F0032F802 /* OrderModel.swift in Sources */,
 				D3A382F82BD59C9400ABD53A /* DiscountsHeaderCell.swift in Sources */,
 				D3B6D1912BC660E700FFE51E /* ProductCell.swift in Sources */,
-				D3F4C7762B852D0900CBEC8A /* OrderDescriptionCell.swift in Sources */,
+				D3F4C7762B852D0900CBEC8A /* OrderProductCell.swift in Sources */,
 				D34212202BC4652100F17838 /* SupportChatController.swift in Sources */,
 				D3B6D1952BC66B7200FFE51E /* ProductModel.swift in Sources */,
 				D342122C2BC4663700F17838 /* CameraInputBarAccessoryViewDelegate.swift in Sources */,
