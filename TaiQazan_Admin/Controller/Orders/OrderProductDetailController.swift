@@ -19,23 +19,22 @@ class OrderProductDetailController: UIViewController {
                 brandTextField.text = product.brand
                 descriptionTextField.text = product.description
                 if let url = URL(string: product.imageLink ?? "") {
-                    productImageButton.sd_setImage(with: url, for: .normal)
+                    productImageView.sd_setImage(with: url, completed: nil)
                 }
             }
         }
     }
     
-    private let productImageButton: UIButton = {
-        let button = UIButton()
-        button.imageView?.contentMode = .scaleToFill
-        button.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.1)
-        button.layer.cornerRadius = 12
-        button.clipsToBounds = true
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
-        button.contentMode = .scaleAspectFill
+    private let productImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.1)
+        imageView.layer.cornerRadius = 12
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
         
-        return button
+        return imageView
     }()
     
     private let nameTextField: UITextField = {
@@ -47,6 +46,7 @@ class OrderProductDetailController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
         tf.leftView = paddingView
         tf.leftViewMode = .always
+        tf.isUserInteractionEnabled = false
         
         return tf
     }()
@@ -60,6 +60,7 @@ class OrderProductDetailController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
         tf.leftView = paddingView
         tf.leftViewMode = .always
+        tf.isUserInteractionEnabled = false
         
         return tf
     }()
@@ -73,6 +74,7 @@ class OrderProductDetailController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
         tf.leftView = paddingView
         tf.leftViewMode = .always
+        tf.isUserInteractionEnabled = false
         
         return tf
     }()
@@ -86,6 +88,7 @@ class OrderProductDetailController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.size.height))
         tf.leftView = paddingView
         tf.leftViewMode = .always
+        tf.isUserInteractionEnabled = false
         
         return tf
     }()
@@ -102,20 +105,20 @@ class OrderProductDetailController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        [productImageButton, mainStackView].forEach {
+        [productImageView, mainStackView].forEach {
             view.addSubview($0)
         }
     }
     
     private func setupConstraints() {
-        productImageButton.snp.makeConstraints { make in
+        productImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(200)
         }
         
         mainStackView.snp.makeConstraints { make in
-            make.top.equalTo(productImageButton.snp.bottom).offset(10)
+            make.top.equalTo(productImageView.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
