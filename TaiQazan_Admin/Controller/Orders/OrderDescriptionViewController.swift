@@ -10,12 +10,9 @@ import UIKit
 class OrderDescriptionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var selectedOrder: Order?
-    var productDataArray: [Product] = []
     
     private let productsTableView: UITableView = {
         let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
         tableView.register(OrderProductCell.self, forCellReuseIdentifier: "OrderProductCell")
         
         return tableView
@@ -74,6 +71,26 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = OrderProductDetailController()
+        let rowNumber = indexPath.row
+        let idOfProduct = selectedOrder?.products[rowNumber].id ?? "0"
+        
+        ProductService.shared.fetchProductWithId(id: idOfProduct) { product, error in
+            if let error = error {
+                print("Failed to fetch product:", error)
+                return
+            }
+
+            if let product = product {
+                vc.selectedProduct = product
+            }
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

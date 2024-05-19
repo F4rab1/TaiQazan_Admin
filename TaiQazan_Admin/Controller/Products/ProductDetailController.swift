@@ -13,7 +13,19 @@ import FirebaseFirestore
 
 class ProductDetailController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var selectedProduct: Product?
+    var selectedProduct: Product? {
+        didSet {
+            if let product = selectedProduct {
+                nameTextField.text = product.name
+                priceTextField.text = "\(product.price ?? 0) ₸"
+                brandTextField.text = product.brand
+                descriptionTextField.text = product.description
+                if let url = URL(string: product.imageLink ?? "") {
+                    productImageButton.sd_setImage(with: url, for: .normal)
+                }
+            }
+        }
+    }
     
     private let productImageButton: UIButton = {
         let button = UIButton()
@@ -96,17 +108,6 @@ class ProductDetailController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let product = selectedProduct {
-            nameTextField.text = product.name
-            priceTextField.text = "\(product.price ?? 0) ₸"
-            brandTextField.text = product.brand
-            descriptionTextField.text = product.description
-            if let url = URL(string: product.imageLink ?? "") {
-                productImageButton.sd_setImage(with: url, for: .normal)
-            }
-            
-        }
         
         let deleteButton = UIBarButtonItem(title: "delete", style: .plain, target: self, action: #selector(deleteButtonTapped))
         navigationItem.rightBarButtonItem = deleteButton
