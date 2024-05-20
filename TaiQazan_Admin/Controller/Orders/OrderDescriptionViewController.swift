@@ -9,7 +9,41 @@ import UIKit
 
 class OrderDescriptionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var selectedOrder: Order?
+    var selectedOrder: Order? {
+        didSet {
+            guard let order = selectedOrder else { return }
+            addressLabel.text = "Address:  \(order.address.city) - \(order.address.street), apartment \(order.address.apartment), entrance  \(order.address.entrance), floor \(order.address.floor)"
+            createdDateLabel.text = "\(order.formattedCreatedDate ?? "")"
+            totalPriceLabel.text = "Total price:  \(order.totalPrice)₸"
+        }
+    }
+    
+    let addressLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Address: "
+        label.font = .systemFont(ofSize: 18)
+        
+        return label
+    }()
+    
+    let createdDateLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .lightGray
+        label.font = .systemFont(ofSize: 18)
+        
+        return label
+    }()
+    
+    let totalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Total price: "
+        label.font = .boldSystemFont(ofSize: 22)
+        
+        return label
+    }()
     
     private let productsTableView: UITableView = {
         let tableView = UITableView()
@@ -28,7 +62,10 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
     
     private func setupUI() {
         view.backgroundColor = .white
+        view.addSubview(createdDateLabel)
+        view.addSubview(addressLabel)
         view.addSubview(productsTableView)
+        view.addSubview(totalPriceLabel)
     }
     
     private func setDelegates() {
@@ -37,8 +74,25 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
     }
     
     private func setupConstraints() {
+        addressLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-10)
+        }
+        
+        createdDateLabel.snp.makeConstraints { make in
+            make.top.equalTo(addressLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+        }
+        
+        totalPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(createdDateLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+        }
+        
         productsTableView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(totalPriceLabel.snp.bottom).offset(10)
+            make.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
