@@ -17,6 +17,7 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
             totalPriceLabel.text = "Total price:  \(order.totalPrice)₸"
         }
     }
+    var pickerView: UIPickerView?
     
     let addressLabel: UILabel = {
         let label = UILabel()
@@ -51,10 +52,23 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         
         return tableView
     }()
+    
+    let changeStatusButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Change status", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        button.layer.cornerRadius = 16
+        button.clipsToBounds = true
 
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        changeStatusButton.addTarget(self, action: #selector(changeStatusButtonTapped), for: .touchUpInside)
         setupUI()
         setDelegates()
         setupConstraints()
@@ -66,11 +80,16 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         view.addSubview(addressLabel)
         view.addSubview(productsTableView)
         view.addSubview(totalPriceLabel)
+        view.addSubview(changeStatusButton)
     }
     
     private func setDelegates() {
         productsTableView.dataSource = self
         productsTableView.delegate = self
+    }
+    
+    @objc func changeStatusButtonTapped() {
+        print("needs implementation!!!")
     }
     
     private func setupConstraints() {
@@ -92,7 +111,13 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         
         productsTableView.snp.makeConstraints { make in
             make.top.equalTo(totalPriceLabel.snp.bottom).offset(10)
-            make.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(changeStatusButton.snp.top).offset(-10)
+        }
+        
+        changeStatusButton.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(48)
         }
     }
     
@@ -147,4 +172,23 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+}
+
+extension OrderDescriptionViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 5
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(row + 1)"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedNumber = row + 1
+        print("Selected number: \(selectedNumber)")
+    }
 }
