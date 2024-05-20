@@ -67,6 +67,7 @@ class OrderProductCell: UITableViewCell {
     
     let totalPriceLabel: UILabel = {
         let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 16)
         
         return label
     }()

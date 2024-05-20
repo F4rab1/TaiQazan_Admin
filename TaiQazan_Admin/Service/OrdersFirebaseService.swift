@@ -17,6 +17,7 @@ class OrderService {
     func fetchOrders(by status: Int, completion: @escaping ([Order], Error?) -> Void) {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE MMM dd, yyyy hh:mm a"
+        formatter.locale = Locale(identifier: "en_US")
         
         let collectionRef = db.collection("orders").whereField("status", isEqualTo: status)
         collectionRef.getDocuments { (querySnapshot, error) in

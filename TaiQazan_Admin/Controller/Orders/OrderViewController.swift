@@ -89,7 +89,8 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Order", for: indexPath) as! OrderCell
         let order = orders[indexPath.item]
-        cell.configure(with: order.id, status: order.status)
+        let number = indexPath.row + 1
+        cell.configure(with: order.formattedCreatedDate ?? "Error with date", status: order.status, number: number)
         
         return cell
     }
@@ -98,6 +99,7 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
         let vc = OrderDescriptionViewController()
         let order = orders[indexPath.item]
         vc.selectedOrder = order
+        vc.title = order.id
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -10,15 +10,19 @@ import SnapKit
 
 class OrderCell: UITableViewCell {
     
-    let cartImage: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "cart.fill")
-        iv.tintColor = .gray
+    let numberLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.backgroundColor = UIColor.rgb(red: 56, green: 182, blue: 255)
+        label.textAlignment = .center
+        label.layer.cornerRadius = 6
+        label.clipsToBounds = true
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         
-        return iv
+        return label
     }()
     
-    let orderIdLabel: UILabel = {
+    let orderDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = UIColor.black
@@ -47,13 +51,14 @@ class OrderCell: UITableViewCell {
     }
     
     private func setupUI() {
-        contentView.addSubview(cartImage)
-        contentView.addSubview(orderIdLabel)
+        contentView.addSubview(numberLabel)
+        contentView.addSubview(orderDateLabel)
         contentView.addSubview(statusLabel)
     }
     
-    func configure(with orderId: String, status: Int) {
-        orderIdLabel.text = "\(orderId)"
+    func configure(with orderDate: String, status: Int, number: Int) {
+        numberLabel.text = "\(number)"
+        orderDateLabel.text = "\(orderDate)"
         statusLabel.text = statusLabelText(for: status)
     }
     
@@ -75,14 +80,14 @@ class OrderCell: UITableViewCell {
     }
     
     private func setupConstraints() {
-        cartImage.snp.makeConstraints { make in
+        numberLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.height.width.equalTo(32)
             make.top.bottom.equalToSuperview().inset(8)
         }
         
-        orderIdLabel.snp.makeConstraints { make in
-            make.leading.equalTo(cartImage.snp.trailing).offset(8)
+        orderDateLabel.snp.makeConstraints { make in
+            make.leading.equalTo(numberLabel.snp.trailing).offset(8)
             make.top.bottom.equalToSuperview().inset(8)
         }
         
