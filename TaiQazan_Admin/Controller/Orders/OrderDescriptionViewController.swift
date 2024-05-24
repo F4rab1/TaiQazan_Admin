@@ -116,6 +116,10 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
             
             self.selectedOrder?.status = newStatus
             print("Order status updated successfully")
+            let alert = UIAlertController(title: "Order status updated successfully", message: "successful", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(action)
+            self.present(alert, animated: true)
         }
     }
     
