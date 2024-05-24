@@ -16,7 +16,7 @@ struct Order: Decodable {
     let orderContact: OrderContact
     let paymentType: Int?
     let products: [ProductModel]
-    let status: Int
+    var status: Int
     let totalPrice: Int
     let userID: String
     

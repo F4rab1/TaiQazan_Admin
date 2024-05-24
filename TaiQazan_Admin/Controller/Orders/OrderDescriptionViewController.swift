@@ -104,7 +104,19 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
     }
     
     @objc func changeStatusButtonTapped() {
-        print("needs implementation!!!")
+        guard let order = selectedOrder else { return }
+        
+        let newStatus = order.status + 1
+        let db = Firestore.firestore()
+        db.collection("orders").document(order.id).updateData(["status": newStatus]) { error in
+            if let error = error {
+                print("Failed to update status:", error)
+                return
+            }
+            
+            self.selectedOrder?.status = newStatus
+            print("Order status updated successfully")
+        }
     }
     
     private func setupConstraints() {
