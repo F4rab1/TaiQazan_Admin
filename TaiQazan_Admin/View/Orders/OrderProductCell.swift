@@ -57,7 +57,8 @@ class OrderProductCell: UITableViewCell {
     
     let quantityLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = UIColor.rgb(red: 211, green: 211, blue: 211)
+        label.backgroundColor = .black
+        label.textColor = .white
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
         label.textAlignment = .center
@@ -96,8 +97,8 @@ class OrderProductCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        backgroundColor = .white
+        backgroundColor = .clear 
+        contentView.backgroundColor = .clear
         
         addSubview(stackView)
         setupConstraints()

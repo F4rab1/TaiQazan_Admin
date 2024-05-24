@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class OrderDescriptionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,7 +15,8 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
             guard let order = selectedOrder else { return }
             addressLabel.text = "Address:  \(order.address.city) - \(order.address.street), apartment \(order.address.apartment), entrance  \(order.address.entrance), floor \(order.address.floor)"
             createdDateLabel.text = "\(order.formattedCreatedDate ?? "")"
-            totalPriceLabel.text = "Total price:  \(order.totalPrice)₸"
+            totalPriceLabel.text = "Total price:  \(order.totalPrice) ₸"
+            paymentTypeLabel.text = "Payment method: \(paymentMethodText(for: order.paymentType ?? 3))"
         }
     }
     var pickerView: UIPickerView?
@@ -46,9 +48,21 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         return label
     }()
     
+    let paymentTypeLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Payment method: "
+        label.font = .systemFont(ofSize: 18)
+        
+        return label
+    }()
+    
     private let productsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(OrderProductCell.self, forCellReuseIdentifier: "OrderProductCell")
+        tableView.backgroundColor = UIColor.rgb(red: 240, green: 242, blue: 240)
+        tableView.layer.cornerRadius = 10
+        tableView.layer.masksToBounds = true
         
         return tableView
     }()
@@ -81,6 +95,7 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         view.addSubview(productsTableView)
         view.addSubview(totalPriceLabel)
         view.addSubview(changeStatusButton)
+        view.addSubview(paymentTypeLabel)
     }
     
     private func setDelegates() {
@@ -109,10 +124,15 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
-        productsTableView.snp.makeConstraints { make in
+        paymentTypeLabel.snp.makeConstraints { make in
             make.top.equalTo(totalPriceLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(changeStatusButton.snp.top).offset(-10)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+        }
+        
+        productsTableView.snp.makeConstraints { make in
+            make.top.equalTo(paymentTypeLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(200)
         }
         
         changeStatusButton.snp.makeConstraints { make in
@@ -190,5 +210,18 @@ extension OrderDescriptionViewController: UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedNumber = row + 1
         print("Selected number: \(selectedNumber)")
+    }
+}
+
+func paymentMethodText(for paymentType: Int) -> String {
+    switch paymentType {
+    case 0:
+        return "Apple Pay"
+    case 1:
+        return "Cash to courier"
+    case 2:
+        return "Card to the courier"
+    default:
+        return "Unknown"
     }
 }
