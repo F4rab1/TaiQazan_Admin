@@ -15,8 +15,8 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
             guard let order = selectedOrder else { return }
             addressLabel.text = "Address:  \(order.address.city) - \(order.address.street), apartment \(order.address.apartment), entrance  \(order.address.entrance), floor \(order.address.floor)"
             createdDateLabel.text = "\(order.formattedCreatedDate ?? "")"
-            totalPriceLabel.text = "Total price:  \(order.totalPrice) ₸"
             paymentTypeLabel.text = "Payment method: \(paymentMethodText(for: order.paymentType ?? 3))"
+            totalPriceLabel.text = "Total price:  \(order.totalPrice) ₸"
         }
     }
     var pickerView: UIPickerView?
@@ -39,15 +39,6 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         return label
     }()
     
-    let totalPriceLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.text = "Total price: "
-        label.font = .boldSystemFont(ofSize: 22)
-        
-        return label
-    }()
-    
     let paymentTypeLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -65,6 +56,15 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
         tableView.layer.masksToBounds = true
         
         return tableView
+    }()
+    
+    let totalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Total price: "
+        label.font = .boldSystemFont(ofSize: 22)
+        
+        return label
     }()
     
     let changeStatusButton: UIButton = {
@@ -90,12 +90,9 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
     
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubview(createdDateLabel)
-        view.addSubview(addressLabel)
-        view.addSubview(productsTableView)
-        view.addSubview(totalPriceLabel)
-        view.addSubview(changeStatusButton)
-        view.addSubview(paymentTypeLabel)
+        [addressLabel, createdDateLabel, paymentTypeLabel, productsTableView, totalPriceLabel, changeStatusButton].forEach {
+            view.addSubview($0)
+        }
     }
     
     private func setDelegates() {
@@ -135,13 +132,8 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
-        totalPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(createdDateLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
-        }
-        
         paymentTypeLabel.snp.makeConstraints { make in
-            make.top.equalTo(totalPriceLabel.snp.bottom).offset(10)
+            make.top.equalTo(createdDateLabel.snp.bottom).offset(10)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
@@ -149,6 +141,11 @@ class OrderDescriptionViewController: UIViewController, UITableViewDataSource, U
             make.top.equalTo(paymentTypeLabel.snp.bottom).offset(10)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.height.equalTo(200)
+        }
+        
+        totalPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(productsTableView.snp.bottom).offset(10)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
         changeStatusButton.snp.makeConstraints { make in

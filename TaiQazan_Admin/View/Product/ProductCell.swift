@@ -82,14 +82,18 @@ class ProductCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(stackView)
-        addSubview(lineView)
-        
+        setupViews()
         setupConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupViews() {
+        [stackView, lineView].forEach {
+            addSubview($0)
+        }
     }
     
     func setupConstraints() {

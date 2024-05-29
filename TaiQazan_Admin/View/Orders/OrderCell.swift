@@ -51,9 +51,9 @@ class OrderCell: UITableViewCell {
     }
     
     private func setupUI() {
-        contentView.addSubview(numberLabel)
-        contentView.addSubview(orderDateLabel)
-        contentView.addSubview(statusLabel)
+        [numberLabel, orderDateLabel, statusLabel].forEach {
+            contentView.addSubview($0)
+        }
     }
     
     func configure(with orderDate: String, status: Int, number: Int) {

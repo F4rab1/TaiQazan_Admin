@@ -53,8 +53,9 @@ class OrderViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubview(segmentedControl)
-        view.addSubview(tableView)
+        [segmentedControl, tableView].forEach {
+            view.addSubview($0)
+        }
     }
     
     private func setDelegates() {
